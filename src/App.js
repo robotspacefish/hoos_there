@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import CreaturesContainer from './Creatures/CreaturesContainer';
 import Clock from './Clock/Clock';
-
-const moment = require('moment')
-
 import './App.css';
 
+const moment = require('moment')
 const json = require('./assets/creatures.json');
 
 class App extends Component {
@@ -15,14 +13,14 @@ class App extends Component {
 
   state = {
     currentCreatures: [],
-    currentDateTime: new Date()
+    now: moment()
   }
 
   render() {
     return (
       <div className="App">
         {/*< Header />*/}
-        <Clock currentDateTime={this.state.currentDateTime} />
+        <Clock now={this.state.now.format("dddd, MMMM Do YYYY, h:mm A")} />
         <CreaturesContainer currentCreatures={this.state.currentCreatures} />
         {/* <Footer /> */}
       </div>

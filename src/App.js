@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CreaturesContainer from './Creatures/CreaturesContainer';
+import Clock from './Clock/Clock';
 
 import './App.css';
 
@@ -12,14 +13,14 @@ class App extends Component {
 
   state = {
     currentCreatures: [],
-    currentTime: new Date()
+    currentDateTime: new Date()
   }
 
   render() {
     return (
       <div className="App">
         {/*< Header />*/}
-        {/* <Clock /> */}
+        <Clock currentDateTime={this.state.currentDateTime} />
         <CreaturesContainer currentCreatures={this.state.currentCreatures} />
         {/* <Footer /> */}
       </div>

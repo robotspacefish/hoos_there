@@ -2,23 +2,24 @@ import React, { Component } from 'react';
 import './Clock.css';
 
 class Clock extends Component {
-  tick() {
-    // TODO
+  componentDidMount() {
+    this.timerID = setInterval(() => this.tick(), 1000);
   }
 
-  renderDateTime() {
-    const { currentDateTime } = this.props;
-    const timeToDisplay = currentDateTime.toLocaleTimeString();
-    const dateToDisplay = currentDateTime.toDateString();
-    return (
-      <div className="Clock container">
-        <h2>It is {timeToDisplay} on {dateToDisplay}</h2>
-      </div>
-    );
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.props.updateCurrentTime();
   }
 
   render() {
-    return this.renderDateTime();
+    return (
+      <div className="Clock">
+        {this.props.now}
+      </div>
+    );
   }
 }
 

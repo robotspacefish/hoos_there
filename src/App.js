@@ -16,6 +16,9 @@ class App extends Component {
     now: moment()
   }
 
+  updateCurrentTime = () => (
+    this.setState({ now: moment() })
+  );
   render() {
     return (
       <div className="App">

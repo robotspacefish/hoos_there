@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import CreaturesContainer from './Creatures/CreaturesContainer';
 import Clock from './Clock/Clock';
 
+const moment = require('moment')
+
 import './App.css';
 
 const json = require('./assets/creatures.json');

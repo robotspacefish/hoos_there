@@ -11,15 +11,17 @@ class App extends Component {
   };
 
   state = {
-    currentCreatures: []
+    currentCreatures: [],
+    currentTime: new Date()
   }
 
   render() {
     return (
       <div className="App">
-        {/* header */}
+        {/*< Header />*/}
+        {/* <Clock /> */}
         <CreaturesContainer currentCreatures={this.state.currentCreatures} />
-        {/* footer */}
+        {/* <Footer /> */}
       </div>
     );
   }

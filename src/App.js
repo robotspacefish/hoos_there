@@ -20,10 +20,11 @@ class App extends Component {
     this.setState({ now: moment() })
   );
   render() {
+    const formattedCurrentTime = this.state.now.format("dddd, MMMM Do YYYY, h:mm:ss A");
     return (
       <div className="App">
         {/*< Header />*/}
-        <Clock now={this.state.now.format("dddd, MMMM Do YYYY, h:mm A")} />
+        <Clock now={formattedCurrentTime} updateCurrentTime={this.updateCurrentTime} />
         <CreaturesContainer currentCreatures={this.state.currentCreatures} />
         {/* <Footer /> */}
       </div>

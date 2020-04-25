@@ -48,8 +48,12 @@ class App extends Component {
 
   setType = (type, value) => (this.setState({ [type]: value }));
 
-  componentDidMount() {
+  updateCurrentCreatures() {
     this.setState({ currentCreatures: this.getCurrentlyAvailableCreatures() })
+  }
+
+  componentDidMount() {
+    this.updateCurrentCreatures()
   }
 
   render() {

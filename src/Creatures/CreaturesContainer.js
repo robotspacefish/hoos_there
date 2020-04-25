@@ -11,7 +11,11 @@ export default class CreaturesContainer extends Component {
   render() {
     return (
       <>
-        <CreatureListHeader updateType={this.props.updateType} />
+        <CreatureListHeader
+          updateType={this.props.updateType}
+          displayType={this.props.displayType}
+          hemisphere={this.props.hemisphere}
+        />
         <CreatureList creatures={this.props.currentCreatures} />
       </>
     )

@@ -1,22 +1,24 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button'
 
 const CreaturesTypeSelect = props => {
-  const setActiveClass = type => (props.displayType === type ? 'active' : '');
+  const isActive = type => (props.displayType === type);
 
   const handleOnClick = e => (props.updateDisplayType("displayType", e.target.dataset.type));
 
   const renderTypeButtons = () => (
     ['all', 'bug', 'fish'].map(type => {
 
-      const classNames = `type-btn ${setActiveClass(type)}`;
-      return <button
+      return <Button
+        variant="outline-success"
+        size="sm"
         key={type}
-        className={classNames}
+        active={isActive(type)}
         data-type={type}
         onClick={handleOnClick}
       >
         {type.toUpperCase()}
-      </button>
+      </Button>
     })
   );
 

@@ -63,14 +63,22 @@ class App extends Component {
     }
   }
 
+  filterByDisplayType = () => {
+    const { displayType, currentCreatures } = this.state;
+    return displayType === 'all' ?
+      currentCreatures :
+      currentCreatures.filter(creature => creature.type === displayType);
+  }
+
   render() {
     const formattedCurrentTime = this.state.now.format("dddd, MMMM Do YYYY, h:mm:ss A");
+    const creatures = this.filterByDisplayType();
     return (
       <div className="App">
         {/*< Header />*/}
         <Clock now={formattedCurrentTime} updateCurrentTime={this.updateCurrentTime} />
         <CreaturesContainer
-          currentCreatures={this.state.currentCreatures}
+          currentCreatures={creatures}
           updateType={this.updateType}
         />
         {/* <Footer /> */}

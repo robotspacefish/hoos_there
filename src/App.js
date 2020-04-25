@@ -47,7 +47,7 @@ class App extends Component {
     ));
   }
 
-  setType = (type, value) => (this.setState({ [type]: value }));
+  updateType = (type, value) => (this.setState({ [type]: value }));
 
   updateCurrentCreatures() {
     this.setState({ currentCreatures: this.getCurrentlyAvailableCreatures() })
@@ -71,7 +71,7 @@ class App extends Component {
         <Clock now={formattedCurrentTime} updateCurrentTime={this.updateCurrentTime} />
         <CreaturesContainer
           currentCreatures={this.state.currentCreatures}
-          setType={this.setType}
+          updateType={this.updateType}
         />
         {/* <Footer /> */}
       </div>

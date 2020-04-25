@@ -4,9 +4,9 @@ import CreaturesTypeSelect from './CreaturesTypeSelect';
 
 const CreatureListHeader = props => (
   <div className="CreatureListHeader">
-    <CreaturesTypeSelect setCreatureDisplayType={props.setType} />
+    <CreaturesTypeSelect updateDisplayType={props.updateType} />
     TODO: SortButtons <br />
-    <CreaturesHemisphereSelect setHemisphereType={props.setType} />
+    <CreaturesHemisphereSelect updateHemisphereType={props.updateType} />
   </div>
 );
 

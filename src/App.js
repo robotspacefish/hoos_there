@@ -55,12 +55,22 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.updateCurrentCreatures()
+    this.updateCurrentCreatures();
+    this.setState({ startingHour: this.state.now.hour() })
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.hemisphere !== this.state.hemisphere) {
       this.updateCurrentCreatures();
+    }
+
+    // if the hour changes over, update current creatures
+    if (this.state.now.hour() > this.state.startingHour) {
+      console.log('getting new creatures')
+      this.setState({
+        currentCreatures: this.getCurrentlyAvailableCreatures(),
+        startingHour: this.state.now.hour()
+      })
     }
   }
 

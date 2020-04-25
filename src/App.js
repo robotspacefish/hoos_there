@@ -15,6 +15,7 @@ class App extends Component {
   state = {
     currentCreatures: [],
     now: moment(),
+    startingHour: null,
     hemisphere: "north",
     displayType: "all"
   }

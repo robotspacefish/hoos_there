@@ -46,6 +46,10 @@ class App extends Component {
     ));
   }
 
+  componentDidMount() {
+    this.setState({ currentCreatures: this.getCurrentlyAvailableCreatures() })
+  }
+
   render() {
     const formattedCurrentTime = this.state.now.format("dddd, MMMM Do YYYY, h:mm:ss A");
     return (

@@ -7,6 +7,7 @@ export default class CreaturesContainer extends Component {
 
   fish = creatures => (creatures.filter(c => c.type === "fish"));
 
+
   render() {
     return (
       <>

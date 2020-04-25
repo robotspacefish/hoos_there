@@ -6,7 +6,7 @@ const CreaturesTypeSelect = props => {
   const handleOnClick = e => (props.updateDisplayType("displayType", e.target.dataset.type));
 
   const renderTypeButtons = () => (
-    ['all', 'bugs', 'fish'].map(type => {
+    ['all', 'bug', 'fish'].map(type => {
 
       const classNames = `type-btn ${setActiveClass(type)}`;
       return <button

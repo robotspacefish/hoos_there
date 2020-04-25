@@ -19,6 +19,25 @@ class App extends Component {
   updateCurrentTime = () => (
     this.setState({ now: moment() })
   );
+
+
+  compareTimeToCurrent(startTime, endTime) {
+    let s = moment();
+    let e = moment();
+    s.hour(startTime)
+    e.hour(endTime)
+    if (endTime < startTime) e.day(e.day() + 1)
+    return this.state.now.isBetween(s, e) && !this.state.now.isSame(e, 'hour');
+  }
+
+  getCurrentlyAvailableCreatures() {
+    return this.props.creatures.filter(creature => (
+      creature.available_times.every(at => (
+        at.time === "All day" || this.compareTimeToCurrent(at.start_time, at.end_time)
+      ))
+    ));
+  }
+
   render() {
     const formattedCurrentTime = this.state.now.format("dddd, MMMM Do YYYY, h:mm:ss A");
     return (

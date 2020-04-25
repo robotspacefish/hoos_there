@@ -56,6 +56,12 @@ class App extends Component {
     this.updateCurrentCreatures()
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.hemisphere !== this.state.hemisphere) {
+      this.updateCurrentCreatures();
+    }
+  }
+
   render() {
     const formattedCurrentTime = this.state.now.format("dddd, MMMM Do YYYY, h:mm:ss A");
     return (

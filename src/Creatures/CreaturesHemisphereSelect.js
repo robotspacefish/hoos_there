@@ -1,16 +1,34 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button'
+import { capitalize } from '../helpers/helpers';
 
 const CreaturesHemisphereSelect = props => {
-  const setActiveClass = type => (props.displayHemisphere === type ? 'active' : '');
+  const isActive = type => (props.hemisphere === type);
 
   const handleOnClick = e => (
-    props.updateHemisphereType("hemisphere", e.target.dataset.hemisphere)
+    props.updateHemisphereType("hemisphere", e.target.dataset.type)
   );
+
+  const renderHemisphereButtons = () => (
+    ['north', 'south'].map(type => {
+
+      return <Button
+        variant="outline-success"
+        size="sm"
+        key={`${type}ern-hemisphere`}
+        active={isActive(type)}
+        data-type={type}
+        onClick={handleOnClick}
+      >
+        {`${capitalize(type)}ern Hemisphere`}
+      </Button>
+    })
+  );
+
 
   return (
     <div className="CreaturesHemisphereSelect">
-      <button className={`hemisphere ${setActiveClass("north")}`} data-hemisphere="north" onClick={handleOnClick}>NORTHERN HEMISPHERE</button>
-      <button className={`hemisphere ${setActiveClass("south")}`} data-hemisphere="south" onClick={handleOnClick}>SOUTHERN HEMISPHERE</button>
+      {renderHemisphereButtons()}
     </div>
   );
 

@@ -8,12 +8,14 @@ const json = require('./assets/creatures.json');
 
 class App extends Component {
   static defaultProps = {
-    creatures: JSON.parse(JSON.stringify(json))
+    creatures: JSON.parse(JSON.stringify(json)),
+    months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"]
   };
 
   state = {
     currentCreatures: [],
-    now: moment()
+    now: moment(),
+    hemisphere: "north"
   }
 
   updateCurrentTime = () => (
@@ -21,7 +23,7 @@ class App extends Component {
   );
 
 
-  compareTimeToCurrent(startTime, endTime) {
+  isOutAtThisTime(startTime, endTime) {
     let s = moment();
     let e = moment();
     s.hour(startTime)
@@ -30,10 +32,16 @@ class App extends Component {
     return this.state.now.isBetween(s, e) && !this.state.now.isSame(e, 'hour');
   }
 
+  isOutInThisMonth(creature) {
+    const { hemisphere, now } = this.state;
+    const month = this.props.months[now.month()].toLowerCase();
+    return creature.hemispheres[hemisphere][month]
+  }
+
   getCurrentlyAvailableCreatures() {
     return this.props.creatures.filter(creature => (
       creature.available_times.every(at => (
-        at.time === "All day" || this.compareTimeToCurrent(at.start_time, at.end_time)
+        this.isOutInThisMonth(creature) && (at.time === "All day" || this.isOutAtThisTime(at.start_time, at.end_time))
       ))
     ));
   }

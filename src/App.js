@@ -80,6 +80,8 @@ class App extends Component {
         <CreaturesContainer
           currentCreatures={creatures}
           updateType={this.updateType}
+          displayType={this.state.displayType}
+          hemisphere={this.state.hemisphere}
         />
         {/* <Footer /> */}
       </div>

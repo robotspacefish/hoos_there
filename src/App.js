@@ -35,6 +35,9 @@ class App extends Component {
       case "shadow":
         sortedCreatures = this.sortByShadowSize(creatures);
         break;
+      case "time":
+        sortedCreatures = this.sortByAvailableTime(creatures);
+        break;
       case "price":
         sortedCreatures = sortNumeric(creatures, "price")
         break;
@@ -60,6 +63,23 @@ class App extends Component {
 
     return [...sortedNarrowOrNaCreatures, sortedNonNarrowCreatures].flat();
   }
+
+  sortByAvailableTime = creatures => (
+    [...creatures].sort((a, b) => {
+      const creatureA = this.getCreaturesFirstTimeAvailable(a);
+      const creatureB = this.getCreaturesFirstTimeAvailable(b);
+
+      return creatureA.start_time - creatureB.start_time
+    })
+  );
+
+  getCreaturesFirstTimeAvailable = (creature) => (
+    // if creature has 1 available time, return that, otherwise sort the times
+    // and return the first one
+    creature.available_times.length === 1 ?
+      { ...creature.available_times[0] } : [...creature.available_times].sort((availA, availB) => availA.start_time - availB.start_time)[0]
+  );
+
 
   updateCurrentTime = () => (
     this.setState({ now: moment() })

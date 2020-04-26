@@ -25,10 +25,7 @@ class App extends Component {
   }
 
   sortCreatures = (creatures) => {
-    // if this.state.sort[type] === null sort 'asc', if 'dsc' sort 'asc'
     let sortedCreatures;
-    // let sortDirection = 'asc';
-    debugger
     switch (this.state.sort.type) {
       case 'name':
       case 'type':

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CreaturesContainer from './Creatures/CreaturesContainer';
 import Clock from './Clock/Clock';
+import Container from 'react-bootstrap/Container'
 import './App.css';
 
 const moment = require('moment')
@@ -85,7 +86,7 @@ class App extends Component {
     const formattedCurrentTime = this.state.now.format("dddd, MMMM Do YYYY, h:mm:ss A");
     const creatures = this.filterByDisplayType();
     return (
-      <div className="App">
+      <Container>
         {/*< Header />*/}
         <Clock now={formattedCurrentTime} updateCurrentTime={this.updateCurrentTime} />
         <CreaturesContainer
@@ -96,7 +97,7 @@ class App extends Component {
           months={this.props.months}
         />
         {/* <Footer /> */}
-      </div>
+      </Container>
     );
   }
 }

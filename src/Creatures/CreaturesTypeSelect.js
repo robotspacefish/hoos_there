@@ -17,6 +17,7 @@ const CreaturesTypeSelect = props => {
         active={isActive(type)}
         data-type={type}
         onClick={handleOnClick}
+        className="option-btn"
       >
         {type.toUpperCase()}
       </Button>

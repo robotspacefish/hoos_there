@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CreaturesContainer from './Creatures/CreaturesContainer';
 import Clock from './Clock/Clock';
 import Container from 'react-bootstrap/Container'
+import { sortAlpha, sortNumeric } from './helpers/helpers';
 import './App.css';
 
 const moment = require('moment')

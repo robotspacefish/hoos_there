@@ -21,14 +21,7 @@ class App extends Component {
     startingHour: null,
     hemisphere: "north",
     displayType: "all",
-    sort: {
-      name: null,
-      type: null,
-      location: null,
-      shadow: null,
-      time: null,
-      price: null
-    }
+    sort: { type: 'default', direction: 'default' }
   }
 
   sortCreatures = type => {

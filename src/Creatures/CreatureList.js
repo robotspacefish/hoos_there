@@ -1,6 +1,8 @@
 import React from 'react';
 import Creature from './Creature';
 import Table from 'react-bootstrap/Table';
+import CreatureListTableHeader from './CreatureListTableHeader';
+
 import './Creature.css';
 
 const CreatureList = ({ creatures, months, hemisphere }) => {
@@ -16,17 +18,7 @@ const CreatureList = ({ creatures, months, hemisphere }) => {
 
   return (
     <Table responsive="xl" striped hover>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Location</th>
-          <th>Shadow Size</th>
-          <th>Time Available</th>
-          <th>Price</th>
-          {/* {renderMonthNames()} */}
-        </tr>
-      </thead>
+      <CreatureListTableHeader />
       <tbody>
         {renderCreatures()}
       </tbody>

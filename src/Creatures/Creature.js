@@ -1,6 +1,7 @@
 import React from 'react';
+import { capitalize } from '../helpers/helpers';
 
-const Creature = ({ creature, index, months, hemisphere }) => {
+const Creature = ({ creature, months, hemisphere }) => {
   const iconType = () => {
     let icon = 'fas ';
     switch (creature.type) {
@@ -36,8 +37,7 @@ const Creature = ({ creature, index, months, hemisphere }) => {
 
   return (
     <tr className="Creature">
-      <td>{index}</td>
-      <td>{creature.name}</td>
+      <td>{capitalize(creature.name)}</td>
       <td>{creature.type}</td>
       <td>{creature.location}</td>
       <td>{creature.shadow_size}</td>
@@ -49,7 +49,7 @@ const Creature = ({ creature, index, months, hemisphere }) => {
         }
       </td>
       <td>{creature.price}</td>
-      {renderMonthAvailability()}
+      {/* {renderMonthAvailability()} */}
     </tr>
   );
 }

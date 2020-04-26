@@ -1,11 +1,12 @@
 import React from 'react';
 import Creature from './Creature';
 import Table from 'react-bootstrap/Table';
+import './Creature.css';
 
 const CreatureList = ({ creatures, months, hemisphere }) => {
   const renderCreatures = () => (
-    creatures.map((c, i) => (
-      <Creature key={c.name} creature={c} index={i + 1} months={months} hemisphere={hemisphere} />
+    creatures.map((c) => (
+      <Creature key={c.name} creature={c} months={months} hemisphere={hemisphere} />
     ))
   );
 
@@ -14,23 +15,23 @@ const CreatureList = ({ creatures, months, hemisphere }) => {
   );
 
   return (
-    <Table striped responsive hover>
+    <Table responsive="xl" borderless>
       <thead>
         <tr>
-          <th>#</th>
           <th>Name</th>
           <th>Type</th>
           <th>Location</th>
           <th>Shadow Size</th>
           <th>Time Available</th>
           <th>Price</th>
-          {renderMonthNames()}
+          {/* {renderMonthNames()} */}
         </tr>
       </thead>
       <tbody>
         {renderCreatures()}
       </tbody>
     </Table>
+
   );
 };
 

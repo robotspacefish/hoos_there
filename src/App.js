@@ -33,7 +33,7 @@ class App extends Component {
         sortedCreatures = sortAlpha(creatures, this.state.sort.type)
         break;
       case "shadow":
-        // todo special case
+        sortedCreatures = this.sortByShadowSize(creatures);
         break;
       case "price":
         sortedCreatures = sortNumeric(creatures, "price")
@@ -45,6 +45,19 @@ class App extends Component {
     if (this.state.sort.direction === 'dsc') sortedCreatures = sortedCreatures.reverse()
     return sortedCreatures;
   };
+
+  sortByShadowSize(creatures) {
+    const type = 'shadow_size'
+    // splice 'narrow' into separate array
+    const narrowOrNACreatures = creatures.filter(c => c.shadow_size === "Narrow" || c.shadow_size === "NA");
+    const nonNarrowCreatures = creatures.filter(c => c.shadow_size !== "Narrow" && c.shadow_size !== "NA").map(c => (
+      { ...c, shadow_size: parseInt(c.shadow_size) }
+    ));
+    const sortedNarrowOrNaCreatures = sortAlpha(narrowOrNACreatures, type);
+    const sortedNonNarrowCreatures = sortNumeric(nonNarrowCreatures, type);
+
+    return [...sortedNarrowOrNaCreatures, sortedNonNarrowCreatures].flat();
+  }
 
   updateCurrentTime = () => (
     this.setState({ now: moment() })

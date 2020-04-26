@@ -24,31 +24,29 @@ class App extends Component {
     sort: { type: 'default', direction: 'default' }
   }
 
-  sortCreatures = type => {
+  sortCreatures = (creatures) => {
     // if this.state.sort[type] === null sort 'asc', if 'dsc' sort 'asc'
     let sortedCreatures;
-    let sortDirection = 'asc';
-
-    switch (type) {
+    // let sortDirection = 'asc';
+    debugger
+    switch (this.state.sort.type) {
       case 'name':
       case 'type':
       case 'location':
-        sortedCreatures = sortAlpha(this.state.currentCreatures, type)
-
+        sortedCreatures = sortAlpha(creatures, this.state.sort.type)
         break;
       case "shadow":
         // todo special case
         break;
+      case "price":
+        sortedCreatures = sortNumeric(creatures, "price")
+        break;
       default:
     }
 
-    if (this.state.sort[type] === 'asc') sortDirection = 'dsc';
-
-    this.setState({ sort: { ...this.state.sort, [type]: sortDirection } })
-
-    if (sortDirection === 'dsc') sortedCreatures = sortedCreatures.reverse()
-    console.log('sorting by', type)
-    console.log(sortedCreatures)
+    // // dsc sort
+    if (this.state.sort.direction === 'dsc') sortedCreatures = sortedCreatures.reverse()
+    return sortedCreatures;
   };
 
   updateCurrentTime = () => (
@@ -81,6 +79,16 @@ class App extends Component {
 
   updateType = (type, value) => (this.setState({ [type]: value }));
 
+  updateSortType = (type) => {
+    let direction = 'asc';
+    if (type === this.state.sort.type) {
+      // if the sort just clicked was the last one clicked, reverse the sort direction
+      direction = this.state.sort.direction === 'asc' ? 'dsc' : 'asc'
+    }
+    this.setState({ sort: { type, direction } });
+  };
+
+
   updateCurrentCreatures() {
     this.setState({ currentCreatures: this.getCurrentlyAvailableCreatures() })
   }
@@ -112,9 +120,15 @@ class App extends Component {
       currentCreatures.filter(creature => creature.type === displayType);
   }
 
+  filterByDisplayTypeAndSort = () => {
+    const creatures = this.filterByDisplayType();
+    return this.state.sort.type === 'default' ?
+      creatures : this.sortCreatures(creatures);
+  }
+
   render() {
     const formattedCurrentTime = this.state.now.format("dddd, MMMM Do YYYY, h:mm:ss A");
-    const creatures = this.filterByDisplayType();
+    const creatures = this.filterByDisplayTypeAndSort();
     return (
       <Container>
         {/*< Header />*/}
@@ -125,7 +139,7 @@ class App extends Component {
           displayType={this.state.displayType}
           hemisphere={this.state.hemisphere}
           months={this.props.months}
-          sortCreatures={this.sortCreatures}
+          updateSortType={this.updateSortType}
         />
         {/* <Footer /> */}
       </Container>

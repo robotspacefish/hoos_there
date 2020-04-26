@@ -5,20 +5,20 @@ import CreatureListTableHeader from './CreatureListTableHeader';
 
 import './Creature.css';
 
-const CreatureList = ({ creatures, months, hemisphere }) => {
+const CreatureList = ({ creatures, months, hemisphere, updateSortType }) => {
   const renderCreatures = () => (
     creatures.map((c) => (
       <Creature key={c.name} creature={c} months={months} hemisphere={hemisphere} />
     ))
   );
 
-  const renderMonthNames = () => (
-    months.map(m => <th key={m}>{m}</th>)
-  );
+  // const renderMonthNames = () => (
+  //   months.map(m => <th key={m}>{m}</th>)
+  // );
 
   return (
     <Table responsive="xl" striped hover>
-      <CreatureListTableHeader />
+      <CreatureListTableHeader updateSortType={updateSortType} />
       <tbody>
         {renderCreatures()}
       </tbody>

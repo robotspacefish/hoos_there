@@ -1,16 +1,20 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button'
-const CreatureListTableHeader = props => {
-  const renderButtons = () => (
-    ['Name', 'Type', 'Location', 'Shadow Size', 'Time Available', 'Price'].map(content => (
-      <th><Button variant="outline-success">{content}</Button></th>
-    ))
+import Button from 'react-bootstrap/Button';
+
+const CreatureListTableHeader = ({ updateSortType }) => {
+  const onClickHandler = e => (
+    updateSortType(e.target.dataset.type)
   );
 
   return (
     <thead className="CreatureListTableHeader">
       <tr>
-        {renderButtons()}
+        <th><Button variant="outline-success" onClick={onClickHandler} data-type="name">Name</Button></th>
+        <th><Button variant="outline-success" onClick={onClickHandler} data-type="type">Type</Button></th>
+        <th><Button variant="outline-success" onClick={onClickHandler} data-type="location">Location</Button></th>
+        <th><Button variant="outline-success" onClick={onClickHandler} data-type="shadow">Shadow Size</Button></th>
+        <th><Button variant="outline-success" onClick={onClickHandler} data-type="time">Time Available</Button></th>
+        <th><Button variant="outline-success" onClick={onClickHandler} data-type="price">Price</Button></th>
       </tr>
     </thead>
   );

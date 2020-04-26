@@ -8,7 +8,7 @@ const CreatureListHeader = props => (
       updateDisplayType={props.updateType}
       displayType={props.displayType}
     />
-    TODO: SortButtons <br />
+
     <CreaturesHemisphereSelect
       updateHemisphereType={props.updateType}
       hemisphere={props.hemisphere}

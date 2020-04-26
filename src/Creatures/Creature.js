@@ -1,6 +1,39 @@
 import React from 'react';
 
-const Creature = ({ creature, index }) => {
+const Creature = ({ creature, index, months, hemisphere }) => {
+  const iconType = () => {
+    let icon = 'fas ';
+    switch (creature.type) {
+      case 'fish':
+        icon += 'fa-fish'
+        break;
+      case 'bug':
+        icon += 'fa-bug'
+        break;
+      default:
+        icon = 'fa fa-check'
+    }
+    return icon;
+  };
+
+
+  const renderMonthAvailability = () => {
+    return months.map(month => {
+      if (creature.hemispheres[hemisphere][month.toLowerCase()]) {
+        return (
+          <td key={`${creature.name}_${month}`} style={{ color: "#2C1E0B" }}>
+            <i className={iconType()} />
+          </td>
+        )
+      } else {
+        return <td key={`${creature.name}_${month}`}>
+          <i className="fas fa-slash" style={{ color: "#51871A" }} />
+        </td>
+      }
+
+    });
+  };
+
   return (
     <tr className="Creature">
       <td>{index}</td>
@@ -16,6 +49,7 @@ const Creature = ({ creature, index }) => {
         }
       </td>
       <td>{creature.price}</td>
+      {renderMonthAvailability()}
     </tr>
   );
 }

@@ -93,6 +93,7 @@ class App extends Component {
           updateType={this.updateType}
           displayType={this.state.displayType}
           hemisphere={this.state.hemisphere}
+          months={this.props.months}
         />
         {/* <Footer /> */}
       </div>

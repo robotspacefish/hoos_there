@@ -47,8 +47,10 @@ class App extends Component {
   };
 
   sortByShadowSize(creatures) {
+    // some creatures don't have a shadow, some have a 'narrow' shadow
+    // I separated them from number size shadows, converted those to integers,
+    // sorted, and joined and flatted those 2 arrays in 'asc' order
     const type = 'shadow_size'
-    // splice 'narrow' into separate array
     const narrowOrNACreatures = creatures.filter(c => c.shadow_size === "Narrow" || c.shadow_size === "NA");
     const nonNarrowCreatures = creatures.filter(c => c.shadow_size !== "Narrow" && c.shadow_size !== "NA").map(c => (
       { ...c, shadow_size: parseInt(c.shadow_size) }

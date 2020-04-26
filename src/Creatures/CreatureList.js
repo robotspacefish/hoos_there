@@ -15,7 +15,7 @@ const CreatureList = ({ creatures, months, hemisphere }) => {
   );
 
   return (
-    <Table responsive="xl" borderless>
+    <Table responsive="xl" striped hover>
       <thead>
         <tr>
           <th>Name</th>

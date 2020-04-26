@@ -10,7 +10,7 @@ export default class CreaturesContainer extends Component {
 
   render() {
     return (
-      <div class="CreatureContainer">
+      <div className="CreatureContainer">
         <CreatureListHeader
           updateType={this.props.updateType}
           displayType={this.props.displayType}

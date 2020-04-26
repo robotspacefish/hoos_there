@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import CreaturesContainer from './Creatures/CreaturesContainer';
 import Clock from './Clock/Clock';
-import Container from 'react-bootstrap/Container'
+import Container from 'react-bootstrap/Container';
 import { sortAlpha, sortNumeric } from './helpers/helpers';
+
 import './App.css';
 
 const moment = require('moment')
@@ -29,6 +30,33 @@ class App extends Component {
       price: null
     }
   }
+
+  sortCreatures = type => {
+    // if this.state.sort[type] === null sort 'asc', if 'dsc' sort 'asc'
+    let sortedCreatures;
+    let sortDirection = 'asc';
+
+    switch (type) {
+      case 'name':
+      case 'type':
+      case 'location':
+        sortedCreatures = sortAlpha(this.state.currentCreatures, type)
+
+        break;
+      case "shadow":
+        // todo special case
+        break;
+      default:
+    }
+
+    if (this.state.sort[type] === 'asc') sortDirection = 'dsc';
+
+    this.setState({ sort: { ...this.state.sort, [type]: sortDirection } })
+
+    if (sortDirection === 'dsc') sortedCreatures = sortedCreatures.reverse()
+    console.log('sorting by', type)
+    console.log(sortedCreatures)
+  };
 
   updateCurrentTime = () => (
     this.setState({ now: moment() })
@@ -76,7 +104,7 @@ class App extends Component {
 
     // if the hour changes over, update current creatures
     if (this.state.now.hour() > this.state.startingHour) {
-      console.log('getting new creatures')
+      console.log('getting new creatures at', this.state.now.toString())
       this.setState({
         currentCreatures: this.getCurrentlyAvailableCreatures(),
         startingHour: this.state.now.hour()
@@ -104,6 +132,7 @@ class App extends Component {
           displayType={this.state.displayType}
           hemisphere={this.state.hemisphere}
           months={this.props.months}
+          sortCreatures={this.sortCreatures}
         />
         {/* <Footer /> */}
       </Container>

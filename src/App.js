@@ -19,7 +19,15 @@ class App extends Component {
     now: moment(),
     startingHour: null,
     hemisphere: "north",
-    displayType: "all"
+    displayType: "all",
+    sort: {
+      name: null,
+      type: null,
+      location: null,
+      shadow: null,
+      time: null,
+      price: null
+    }
   }
 
   updateCurrentTime = () => (

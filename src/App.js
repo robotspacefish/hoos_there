@@ -20,16 +20,7 @@ class App extends Component {
   };
 
   updateType = (type, value) => (this.setState({ [type]: value }));
-
-  // updateSortType = (type) => {
-  //   let direction = 'asc';
-  //   if (type === this.state.sort.type) {
-  //     // if the sort just clicked was the last one clicked, reverse the sort direction
-  //     direction = this.state.sort.direction === 'asc' ? 'dsc' : 'asc'
-  //   }
-  //   this.setState({ sort: { type, direction } });
-  // };
-
+  updateType = (type, value) => (this.props.updateType({ [type]: value }));
 
   updateCurrentCreatures() {
     const { getCurrentlyAvailableCreatures, creatures, months, hemisphere, now } = this.props;

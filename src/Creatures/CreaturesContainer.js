@@ -21,6 +21,8 @@ export default class CreaturesContainer extends Component {
           hemisphere={this.props.hemisphere}
           months={this.props.months}
           updateSortType={this.props.updateSortType}
+          // sortIcon={this.props.sortIcon}
+          sortInfo={this.props.sortInfo}
         />
       </div>
     )

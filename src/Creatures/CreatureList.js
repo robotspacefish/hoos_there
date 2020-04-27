@@ -5,7 +5,8 @@ import CreatureListTableHeader from './CreatureListTableHeader';
 
 import './Creature.css';
 
-const CreatureList = ({ creatures, months, hemisphere, updateSortType }) => {
+const CreatureList = props => {
+  const { creatures, months, hemisphere, updateSortType, sortInfo } = props;
   const renderCreatures = () => (
     creatures.map((c) => (
       <Creature key={c.name} creature={c} months={months} hemisphere={hemisphere} />
@@ -18,7 +19,7 @@ const CreatureList = ({ creatures, months, hemisphere, updateSortType }) => {
 
   return (
     <Table responsive="xl" striped hover>
-      <CreatureListTableHeader updateSortType={updateSortType} />
+      <CreatureListTableHeader updateSortType={updateSortType} sortInfo={sortInfo} />
       <tbody>
         {renderCreatures()}
       </tbody>

@@ -21,8 +21,24 @@ class App extends Component {
     startingHour: null,
     hemisphere: "north",
     displayType: "all",
-    sort: { type: 'default', direction: 'default' }
+    sort: { type: 'default', direction: 'default', icon: '' }
   }
+
+  // updateSortIcon = () => {
+  //   let icon;
+  //   if (this.state.sort.direction === "asc") {
+  //     // icon is up arrow
+  //     icon = "fas fa-sort-up";
+  //   } else if (this.state.sort.direction === "dsc") {
+  //     /// icon is down arrow
+  //     icon = "fas fa-sort-down";
+  //   } else {
+  //     // icon is nothing
+  //     icon = "";
+  //   }
+
+  //   this.setState({ sort: { ...this.state.sort, icon } });
+  // };
 
   sortCreatures = (creatures) => {
     let sortedCreatures;
@@ -46,7 +62,9 @@ class App extends Component {
 
     // // dsc sort
     if (this.state.sort.direction === 'dsc') sortedCreatures = sortedCreatures.reverse()
+
     return sortedCreatures;
+
   };
 
   sortByShadowSize(creatures) {
@@ -172,6 +190,8 @@ class App extends Component {
           hemisphere={this.state.hemisphere}
           months={this.props.months}
           updateSortType={this.updateSortType}
+          // sortIcon={this.state.sort.icon}
+          sortInfo={this.state.sort}
         />
         {/* <Footer /> */}
       </Container>

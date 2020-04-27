@@ -7,3 +7,33 @@
   font-weight: 700;
   font-size: inherit;
 }
+
+.CreaturesTypeSelect {
+  margin-right: 10px;
+}
+
+.CreatureList {
+  color: rgb(20, 18, 16);
+}
+
+/* overriding bootstrap */
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(135, 184, 62, 0.76);
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+  background-color: rgba(204, 231, 163, 0.342);
+}
+
+
+.CreatureList td, .CreatureList th {
+  border-top: 1px solid #31A744;
+}
+
+.CreatureListTableHeader button {
+  font-weight: 700 ;
+}
+
+.table thead th {
+    border-bottom: 2px solid rgb(15, 61, 23) !important;
+}

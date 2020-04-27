@@ -1,8 +1,9 @@
 .Clock {
   text-align: center;
   font-size: 1.5em;
-  margin: 40px 0 60px;
-  padding: 20px 0;
+  /* margin: 40px 0 60px; */
+  /* padding: 20px 0; */
+  padding-bottom: 10px;
   background-color: rgb(135, 184, 62);
-  color: #417011;
+  color: #355f0b;
 }

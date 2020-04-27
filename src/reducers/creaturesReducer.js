@@ -7,7 +7,7 @@ const defaultState = {
   sort: { type: 'default', direction: 'default', icon: '' }
 };
 
-export default function creaturesReducer(state = defaultState, action) {
+export default function (state = defaultState, action) {
   switch (action.type) {
     default:
       return state;

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import creaturesReducer from './creaturesReducer';
-import clockReducer from './clockReducer';
+import creatures from './creaturesReducer';
+import clock from './clockReducer';
 
 export default combineReducers({
-  creaturesReducer,
-  clockReducer
+  creatures,
+  clock
 });

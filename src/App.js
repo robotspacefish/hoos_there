@@ -26,22 +26,6 @@ class App extends Component {
     sort: { type: 'default', direction: 'default', icon: '' }
   }
 
-  // updateSortIcon = () => {
-  //   let icon;
-  //   if (this.state.sort.direction === "asc") {
-  //     // icon is up arrow
-  //     icon = "fas fa-sort-up";
-  //   } else if (this.state.sort.direction === "dsc") {
-  //     /// icon is down arrow
-  //     icon = "fas fa-sort-down";
-  //   } else {
-  //     // icon is nothing
-  //     icon = "";
-  //   }
-
-  //   this.setState({ sort: { ...this.state.sort, icon } });
-  // };
-
   sortCreatures = (creatures) => {
     let sortedCreatures;
     switch (this.state.sort.type) {
@@ -180,12 +164,14 @@ class App extends Component {
   }
 
   render() {
-    const formattedCurrentTime = this.state.now.format("dddd, MMMM Do YYYY, h:mm:ss A");
     const creatures = this.filterByDisplayTypeAndSort();
     return (
       <Container>
         {/*< Header />*/}
-        <Clock now={formattedCurrentTime} updateCurrentTime={this.updateCurrentTime} />
+
+        {this.props.now &&
+          <Clock now={this.props.now.format("dddd, MMMM Do YYYY, h:mm A")} updateCurrentTime={this.props.setCurrentTime} />
+        }
         <CreaturesContainer
           currentCreatures={creatures}
           updateType={this.updateType}
@@ -201,9 +187,13 @@ class App extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  now: state.clock.now
+});
+
 
 const mapDispatchToProps = dispatch => ({
   setCurrentTime: () => dispatch(setCurrentTime())
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

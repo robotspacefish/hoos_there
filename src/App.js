@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import CreaturesContainer from './Creatures/CreaturesContainer';
 import Header from './Header/Header';
+import Footer from './Footer/Footer';
 import Container from 'react-bootstrap/Container';
 import { sortAlpha, sortNumeric } from './helpers/helpers';
 import { connect } from 'react-redux';
 import { setCurrentTime } from './actions/clockActions';
+import { getCurrentlyAvailableCreatures } from './actions/creatureActions';
 
 import './App.css';
 
-const moment = require('moment')
 const json = require('./assets/creatures.json');
 
 class App extends Component {
@@ -18,7 +19,6 @@ class App extends Component {
   };
 
   state = {
-    displayType: "all",
     sort: { type: 'default', direction: 'default', icon: '' }
   }
 
@@ -122,8 +122,7 @@ class App extends Component {
   }
 
   filterByDisplayType = () => {
-    const { displayType } = this.state;
-    const { currentCreatures } = this.props;
+    const { displayType, currentCreatures } = this.props;
     return displayType === 'all' ?
       currentCreatures :
       currentCreatures.filter(creature => creature.type === displayType);
@@ -158,7 +157,8 @@ class App extends Component {
 const mapStateToProps = state => ({
   now: state.clock.now,
   currentCreatures: state.creatures.currentCreatures,
-  hemisphere: state.creatures.hemisphere
+  hemisphere: state.creatures.hemisphere,
+  displayType: state.creatures.displayType
 });
 
 

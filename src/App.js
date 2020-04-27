@@ -19,7 +19,6 @@ class App extends Component {
 
   state = {
     currentCreatures: [],
-    now: moment(),
     startingHour: null,
     hemisphere: "north",
     displayType: "all",
@@ -91,16 +90,19 @@ class App extends Component {
 
 
   isOutAtThisTime(startTime, endTime) {
+    const { now } = this.props;
     let s = moment();
     let e = moment();
     s.hour(startTime)
     e.hour(endTime)
     if (endTime < startTime) e.day(e.day() + 1)
-    return this.state.now.isBetween(s, e) && !this.state.now.isSame(e, 'hour');
+    return now.isBetween(s, e) && !now.isSame(e, 'hour');
   }
 
   isOutInThisMonth(creature) {
-    const { hemisphere, now } = this.state;
+    const { hemisphere } = this.state;
+    const { now } = this.props;
+
     const month = this.props.months[now.month()].toLowerCase();
     return creature.hemispheres[hemisphere][month]
   }
@@ -132,7 +134,7 @@ class App extends Component {
   componentDidMount() {
     this.props.setCurrentTime();
     this.updateCurrentCreatures();
-    this.setState({ startingHour: this.state.now.hour() })
+    this.setState({ startingHour: this.props.now.hour() })
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -141,11 +143,11 @@ class App extends Component {
     }
 
     // if the hour changes over, update current creatures
-    if (this.state.now.hour() > this.state.startingHour) {
-      console.log('getting new creatures at', this.state.now.toString())
+    if (this.props.now.hour() > this.state.startingHour) {
+      console.log('getting new creatures at', this.props.now.toString())
       this.setState({
         currentCreatures: this.getCurrentlyAvailableCreatures(),
-        startingHour: this.state.now.hour()
+        startingHour: this.props.now.hour()
       })
     }
   }

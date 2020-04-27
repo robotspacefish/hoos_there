@@ -1,16 +1,38 @@
 header {
   margin-bottom: 40px;
-  color: #433012;
-  background-color: #87B83E;
+}
+
+.Header__title-container, footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .Header__title-container {
   font-family: 'FinkHeavy';
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 20px 0 0 0;
-  margin-top: 20px;
+}
+
+header, footer {
+  color: #433012;
+  background-color: #87B83E;
+}
+
+footer {
+  padding: 10px 0;
+  margin-top: 40px;
+}
+
+footer p {
+  margin: 0 20px;
+}
+
+footer a, footer a:hover {
+  color: #433012;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
 
 .title {
@@ -21,12 +43,61 @@ header {
 }
 
 .logo {
-  width: 70%;
+  /* width: 30%; */
   height: auto;
+  margin-right: 20px;
   transform: rotate(-10deg);
 }
 
 button.btn.active, .btn-outline-success:hover {
   /* overriding bootstrap */
   background-color: #87B83E !important;
+}
+
+@media screen and (max-width:480px) {
+  .title {
+    font-size: 1.8em;
+  }
+
+  /* .Header__logo-container {
+    display: block;
+  } */
+
+  .logo {
+    width: 15%;
+  }
+
+  .Clock {
+    margin-top: 15px;
+    font-size: 1em;
+  }
+
+  footer p {
+    margin: 0 10px;
+    font-size: 0.9em;
+  }
+
+  .container {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .logo {
+    width: 15%;
+  }
+
+    .title {
+    font-size: 2.4em;
+  }
+
+  .Clock {
+    margin-top: 15px;
+    font-size: 1.2em;
+  }
+
+  .container {
+    padding: 0;
+
+  }
 }

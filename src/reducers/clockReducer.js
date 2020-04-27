@@ -1,4 +1,6 @@
-export default function (state = {}, action) {
+const moment = require('moment');
+
+export default function (state = { now: moment() }, action) {
   switch (action.type) {
     case "SET_CURRENT_TIME":
       return {

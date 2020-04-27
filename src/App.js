@@ -170,10 +170,7 @@ class App extends Component {
     return (
       <Container>
         {/*< Header />*/}
-
-        {this.props.now &&
-          <Clock now={this.props.now.format("dddd, MMMM Do YYYY, h:mm A")} updateCurrentTime={this.props.setCurrentTime} />
-        }
+        <Clock now={this.props.now.format("dddd, MMMM Do YYYY, h:mm A")} updateCurrentTime={this.props.setCurrentTime} />
         <CreaturesContainer
           currentCreatures={creatures}
           updateType={this.updateType}

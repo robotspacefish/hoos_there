@@ -146,6 +146,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.props.setCurrentTime();
     this.updateCurrentCreatures();
     this.setState({ startingHour: this.state.now.hour() })
   }

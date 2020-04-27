@@ -9,6 +9,11 @@ const defaultState = {
 
 export default function (state = defaultState, action) {
   switch (action.type) {
+    case "GET_CURRENT_CREATURES":
+      return {
+        ...state,
+        currentCreatures: action.payload
+      }
     default:
       return state;
   }

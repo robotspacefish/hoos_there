@@ -18,9 +18,6 @@ class App extends Component {
   };
 
   state = {
-    currentCreatures: [],
-    startingHour: null,
-    hemisphere: "north",
     displayType: "all",
     sort: { type: 'default', direction: 'default', icon: '' }
   }
@@ -83,32 +80,6 @@ class App extends Component {
       { ...creature.available_times[0] } : [...creature.available_times].sort((availA, availB) => availA.start_time - availB.start_time)[0]
   );
 
-  isOutAtThisTime(startTime, endTime) {
-    const { now } = this.props;
-    let s = moment();
-    let e = moment();
-    s.hour(startTime)
-    e.hour(endTime)
-    if (endTime < startTime) e.day(e.day() + 1)
-    return now.isBetween(s, e) && !now.isSame(e, 'hour');
-  }
-
-  isOutInThisMonth(creature) {
-    const { hemisphere } = this.state;
-    const { now } = this.props;
-
-    const month = this.props.months[now.month()].toLowerCase();
-    return creature.hemispheres[hemisphere][month]
-  }
-
-  getCurrentlyAvailableCreatures() {
-    return this.props.creatures.filter(creature => (
-      creature.available_times.every(at => (
-        this.isOutInThisMonth(creature) && (at.time === "All day" || this.isOutAtThisTime(at.start_time, at.end_time))
-      ))
-    ));
-  }
-
   updateType = (type, value) => (this.setState({ [type]: value }));
 
   updateSortType = (type) => {
@@ -122,7 +93,8 @@ class App extends Component {
 
 
   updateCurrentCreatures() {
-    this.setState({ currentCreatures: this.getCurrentlyAvailableCreatures() })
+    const { getCurrentlyAvailableCreatures, creatures, months, hemisphere, now } = this.props;
+    getCurrentlyAvailableCreatures(creatures, months, hemisphere, now);
   }
 
   componentDidMount() {
@@ -138,16 +110,20 @@ class App extends Component {
 
     // if the hour changes over, update current creatures
     if (this.props.now.hour() > this.state.startingHour) {
+      // TODO get new creatures and compare to state- only update if they
+      // differ
       console.log('getting new creatures at', this.props.now.toString())
+      this.updateCurrentCreatures();
       this.setState({
-        currentCreatures: this.getCurrentlyAvailableCreatures(),
+        // currentCreatures: this.getCurrentlyAvailableCreatures(),
         startingHour: this.props.now.hour()
       })
     }
   }
 
   filterByDisplayType = () => {
-    const { displayType, currentCreatures } = this.state;
+    const { displayType } = this.state;
+    const { currentCreatures } = this.props;
     return displayType === 'all' ?
       currentCreatures :
       currentCreatures.filter(creature => creature.type === displayType);
@@ -164,7 +140,6 @@ class App extends Component {
     return (
       <Container>
         < Header now={this.props.now.format("dddd, MMMM Do YYYY, h:mm A")} updateCurrentTime={this.props.setCurrentTime} />
-        {/* <Clock now={this.props.now.format("dddd, MMMM Do YYYY, h:mm A")} updateCurrentTime={this.props.setCurrentTime} /> */}
 
         <CreaturesContainer
           currentCreatures={creatures}
@@ -173,21 +148,25 @@ class App extends Component {
           hemisphere={this.state.hemisphere}
           months={this.props.months}
           updateSortType={this.updateSortType}
-          // sortIcon={this.state.sort.icon}
           sortInfo={this.state.sort}
         />
-        {/* <Footer /> */}
+        <Footer />
       </Container>
     );
   }
 }
 const mapStateToProps = state => ({
-  now: state.clock.now
+  now: state.clock.now,
+  currentCreatures: state.creatures.currentCreatures,
+  hemisphere: state.creatures.hemisphere
 });
 
 
-const mapDispatchToProps = dispatch => ({
-  setCurrentTime: () => dispatch(setCurrentTime())
-});
+const mapDispatchToProps = dispatch => {
+  return {
+    setCurrentTime: () => dispatch(setCurrentTime()),
+    getCurrentlyAvailableCreatures: (creatures, months, hemisphere, now) => dispatch(getCurrentlyAvailableCreatures(creatures, months, hemisphere, now)),
+  }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

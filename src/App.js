@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CreaturesContainer from './Creatures/CreaturesContainer';
+import Header from './Header/Header';
 import Clock from './Clock/Clock';
 import Container from 'react-bootstrap/Container';
 import { sortAlpha, sortNumeric } from './helpers/helpers';
@@ -163,7 +164,7 @@ class App extends Component {
     const creatures = this.filterByDisplayTypeAndSort();
     return (
       <Container>
-        {/*< Header />*/}
+        < Header />
         <Clock now={this.props.now.format("dddd, MMMM Do YYYY, h:mm A")} updateCurrentTime={this.props.setCurrentTime} />
 
         <CreaturesContainer

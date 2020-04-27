@@ -1,8 +1,3 @@
-/**
- * sort
- * update view type
- * update hemisphere type
- */
 const moment = require('moment');
 
 export const getCurrentlyAvailableCreatures = (creatures, months, hemisphere, now) => {
@@ -30,3 +25,12 @@ const isOutAtThisTime = (startTime, endTime, now) => {
   if (endTime < startTime) e.day(e.day() + 1)
   return now.isBetween(s, e) && !now.isSame(e, 'hour');
 }
+
+export const updateSortType = (currentSort, type) => {
+  let direction = 'asc';
+  if (type === currentSort.type) {
+    // if the sort just clicked was the last one clicked, reverse the sort direction
+    direction = currentSort.direction === 'asc' ? 'dsc' : 'asc'
+  }
+  return { type: "UPDATE_SORT_TYPE", payload: { type, direction } }
+};

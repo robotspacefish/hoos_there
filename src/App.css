@@ -1,3 +1,7 @@
+.container {
+  max-width: 1200px;
+}
+
 header {
   margin-bottom: 40px;
 }
@@ -59,26 +63,13 @@ button.btn.active, .btn-outline-success:hover {
     font-size: 1.8em;
   }
 
-  /* .Header__logo-container {
-    display: block;
-  } */
-
-  .logo {
-    width: 15%;
-  }
-
   .Clock {
-    margin-top: 15px;
     font-size: 1em;
   }
 
   footer p {
     margin: 0 10px;
     font-size: 0.9em;
-  }
-
-  .container {
-    padding: 0;
   }
 }
 
@@ -87,7 +78,7 @@ button.btn.active, .btn-outline-success:hover {
     width: 15%;
   }
 
-    .title {
+  .title {
     font-size: 2.4em;
   }
 
@@ -98,6 +89,12 @@ button.btn.active, .btn-outline-success:hover {
 
   .container {
     padding: 0;
-
   }
+
+  .CreaturesTypeSelect,
+  .CreaturesHemisphereSelect {
+    /* margin: 0 auto 5px; */
+    width: 100%;
+  }
+
 }

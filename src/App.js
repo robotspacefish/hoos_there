@@ -83,12 +83,6 @@ class App extends Component {
       { ...creature.available_times[0] } : [...creature.available_times].sort((availA, availB) => availA.start_time - availB.start_time)[0]
   );
 
-
-  updateCurrentTime = () => (
-    this.setState({ now: moment() })
-  );
-
-
   isOutAtThisTime(startTime, endTime) {
     const { now } = this.props;
     let s = moment();
@@ -171,6 +165,7 @@ class App extends Component {
       <Container>
         {/*< Header />*/}
         <Clock now={this.props.now.format("dddd, MMMM Do YYYY, h:mm A")} updateCurrentTime={this.props.setCurrentTime} />
+
         <CreaturesContainer
           currentCreatures={creatures}
           updateType={this.updateType}

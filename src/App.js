@@ -3,6 +3,8 @@ import CreaturesContainer from './Creatures/CreaturesContainer';
 import Clock from './Clock/Clock';
 import Container from 'react-bootstrap/Container';
 import { sortAlpha, sortNumeric } from './helpers/helpers';
+import { connect } from 'react-redux';
+import { setCurrentTime } from './actions/clockActions';
 
 import './App.css';
 
@@ -199,4 +201,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  setCurrentTime: () => dispatch(setCurrentTime())
+});
+
+export default connect(null, mapDispatchToProps)(App);

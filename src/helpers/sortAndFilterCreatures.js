@@ -27,11 +27,10 @@ const sortCreatures = (sort, creatures) => {
       sortedCreatures = sortByAvailableTime(creatures);
       break;
     case "price":
-      sortedCreatures = sortNumeric(creatures, "price")
+      sortedCreatures = sortNumeric(creatures, sort.type)
       break;
     default:
   }
-
   // // dsc sort
   if (sort.direction === 'dsc') sortedCreatures = sortedCreatures.reverse()
 

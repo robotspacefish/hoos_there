@@ -14,14 +14,6 @@ class CreaturesContainer extends Component {
     creatures: JSON.parse(JSON.stringify(json))
   };
 
-  bugs = creatures => (creatures.filter(c => c.type === "bug"));
-
-  fish = creatures => (creatures.filter(c => c.type === "fish"));
-
-  // updateType = (type, value) => (
-  //   this.props.updateType({ [type]: value })
-  // );
-
   updateSortType = type => (
     this.props.updateSortType(this.props.sort, type)
   )

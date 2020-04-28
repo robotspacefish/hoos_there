@@ -37,11 +37,8 @@ class CreaturesContainer extends Component {
       // TODO get new creatures and compare to state- only update if they
       // differ
 
-      console.log('getting new creatures at', this.props.now.toString())
-
       this.updateCurrentCreatures();
       this.props.updateStartingHour(this.props.now.hour());
-      this.setState({ isFetching: true })
     }
   }
 
@@ -64,6 +61,7 @@ class CreaturesContainer extends Component {
   }
 
   render() {
+    console.log('CreatureContainer: Render')
     return (
       <div className="CreatureContainer">
         {this.renderCreatureList()}

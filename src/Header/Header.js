@@ -8,7 +8,7 @@ const Header = props => (
       <img className="logo" src={owl} alt="Hoo's There logo" />
       <h1 className="title">Hoo's There?</h1>
     </div>
-    <Clock now={props.now} updateCurrentTime={props.updateCurrentTime} />
+    <Clock now={props.now} updateCurrentTime={props.updateCurrentTime} startingHour={props.startingHour} />
   </header>
 );
 

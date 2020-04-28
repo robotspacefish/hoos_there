@@ -13,29 +13,9 @@ class App extends Component {
     months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"]
   };
 
-  componentDidMount() {
-    this.props.setCurrentTime();
-    // this.updateCurrentCreatures();
-    // TODO FIX
-    this.setState({ startingHour: this.props.now.hour() })
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-
-    // if the hour changes over, update current creatures
-    // TODO FIX
-    if (this.props.now.hour() > this.state.startingHour) {
-      // TODO get new creatures and compare to state- only update if they
-      // differ
-      console.log('getting new creatures at', this.props.now.toString())
-      this.updateCurrentCreatures();
-      this.setState({
-        // currentCreatures: this.getCurrentlyAvailableCreatures(),
-        // TODO FIX
-        startingHour: this.props.now.hour()
-      })
-    }
-  }
+  // componentDidMount() {
+  //   this.props.setCurrentTime();
+  // }
 
   render() {
     return (

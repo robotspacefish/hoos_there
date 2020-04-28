@@ -14,6 +14,11 @@ export default function (state = defaultState, action) {
       };
     case "UPDATE_SORT_TYPE":
       return { ...state, sort: action.payload };
+    case "UPDATE_TYPE":
+      const { key, value } = action.payload;
+      return {
+        ...state, [key]: value
+      }
     default:
       return state;
   }

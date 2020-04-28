@@ -18,6 +18,10 @@ class CreaturesContainer extends Component {
 
   fish = creatures => (creatures.filter(c => c.type === "fish"));
 
+  // updateType = (type, value) => (
+  //   this.props.updateType({ [type]: value })
+  // );
+
   updateSortType = type => (
     this.props.updateSortType(this.props.sort, type)
   )
@@ -62,7 +66,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     getCurrentlyAvailableCreatures: (creatures, months, hemisphere, now) => dispatch(getCurrentlyAvailableCreatures(creatures, months, hemisphere, now)),
-    updateSort: (currentSort, type) => dispatch(updateSort(currentSort, type))
+    updateSort: (currentSort, type) => dispatch(updateSort(currentSort, type)),
+    updateType: (type, value) => dispatch(updateType(type, value))
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CreaturesContainer);

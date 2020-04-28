@@ -6,7 +6,7 @@ import CreatureListTableHeader from './CreatureListTableHeader';
 import './Creature.css';
 
 const CreatureList = props => {
-  const { creatures, months, hemisphere, updateSortType, sortInfo } = props;
+  const { creatures, months, hemisphere, updateSort, sortInfo } = props;
   const renderCreatures = () => (
     creatures.map((c) => (
       <Creature key={c.name} creature={c} months={months} hemisphere={hemisphere} />

@@ -1,35 +1,29 @@
 import React, { Component } from 'react';
-import CreaturesContainer from './Creatures/CreaturesContainer';
 import Header from './Header/Header';
+import CreaturesContainer from './Creatures/CreaturesContainer';
 import Footer from './Footer/Footer';
 import Container from 'react-bootstrap/Container';
-// import { sortAlpha, sortNumeric } from './helpers/helpers';
 import { connect } from 'react-redux';
 import { setCurrentTime } from './actions/clockActions';
-import { getCurrentlyAvailableCreatures, updateSortType } from './actions/creatureActions';
-import { filterByDisplayTypeAndSort } from './helpers/sortAndFilterCreatures';
 
 import './App.css';
 
-const json = require('./assets/creatures.json');
-
 class App extends Component {
   static defaultProps = {
-    creatures: JSON.parse(JSON.stringify(json)),
     months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"]
   };
 
-  updateType = (type, value) => (this.setState({ [type]: value }));
+  // updateType = (type, value) => (this.setState({ [type]: value }));
   updateType = (type, value) => (this.props.updateType({ [type]: value }));
 
-  updateCurrentCreatures() {
-    const { getCurrentlyAvailableCreatures, creatures, months, hemisphere, now } = this.props;
-    getCurrentlyAvailableCreatures(creatures, months, hemisphere, now);
-  }
+  // updateCurrentCreatures() {
+  //   const { getCurrentlyAvailableCreatures, creatures, months, hemisphere, now } = this.props;
+  //   getCurrentlyAvailableCreatures(creatures, months, hemisphere, now);
+  // }
 
   componentDidMount() {
     this.props.setCurrentTime();
-    this.updateCurrentCreatures();
+    // this.updateCurrentCreatures();
     // TODO FIX
     this.setState({ startingHour: this.props.now.hour() })
   }
@@ -54,24 +48,14 @@ class App extends Component {
     }
   }
 
-  updateSortType = type => (
-    this.props.updateSortType(this.props.sort, type)
-  )
-
   render() {
-    const creatures = filterByDisplayTypeAndSort(this.props.sort, this.props.displayType, this.props.currentCreatures);
     return (
       <Container>
         < Header now={this.props.now.format("dddd, MMMM Do YYYY, h:mm A")} updateCurrentTime={this.props.setCurrentTime} />
 
         <CreaturesContainer
-          currentCreatures={creatures}
-          updateType={this.updateType}
-          displayType={this.props.displayType}
-          hemisphere={this.props.hemisphere}
           months={this.props.months}
-          updateSortType={this.updateSortType}
-          sortInfo={this.props.sort}
+          now={this.props.now}
         />
         <Footer />
       </Container>
@@ -79,19 +63,13 @@ class App extends Component {
   }
 }
 const mapStateToProps = state => ({
-  now: state.clock.now,
-  currentCreatures: state.creatures.currentCreatures,
-  hemisphere: state.creatures.hemisphere,
-  displayType: state.creatures.displayType,
-  sort: state.creatures.sort
+  now: state.clock.now
 });
 
 
 const mapDispatchToProps = dispatch => {
   return {
-    setCurrentTime: () => dispatch(setCurrentTime()),
-    getCurrentlyAvailableCreatures: (creatures, months, hemisphere, now) => dispatch(getCurrentlyAvailableCreatures(creatures, months, hemisphere, now)),
-    updateSortType: (currentSort, type) => dispatch(updateSortType(currentSort, type))
+    setCurrentTime: () => dispatch(setCurrentTime())
   }
 };
 

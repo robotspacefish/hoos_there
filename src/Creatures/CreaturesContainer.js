@@ -2,13 +2,37 @@ import React, { Component } from 'react'
 import CreatureListHeader from './CreatureListHeader';
 import CreatureList from './CreatureList';
 
-export default class CreaturesContainer extends Component {
+import { connect } from 'react-redux';
+
+import { getCurrentlyAvailableCreatures, updateSort, updateType } from '../actions/creatureActions';
+import { filterByDisplayTypeAndSort } from '../helpers/sortAndFilterCreatures';
+
+const json = require('../assets/creatures.json');
+
+class CreaturesContainer extends Component {
+  static defaultProps = {
+    creatures: JSON.parse(JSON.stringify(json))
+  };
+
   bugs = creatures => (creatures.filter(c => c.type === "bug"));
 
   fish = creatures => (creatures.filter(c => c.type === "fish"));
 
+  updateSortType = type => (
+    this.props.updateSortType(this.props.sort, type)
+  )
+
+  updateCurrentCreatures() {
+    const { getCurrentlyAvailableCreatures, months, hemisphere, now } = this.props;
+    getCurrentlyAvailableCreatures(this.props.creatures, months, hemisphere, now);
+  }
+
+  componentDidMount() {
+    this.updateCurrentCreatures();
+  }
 
   render() {
+    const creatures = filterByDisplayTypeAndSort(this.props.sort, this.props.displayType, this.props.currentCreatures);
     return (
       <div className="CreatureContainer">
         <CreatureListHeader
@@ -17,14 +41,28 @@ export default class CreaturesContainer extends Component {
           hemisphere={this.props.hemisphere}
         />
         <CreatureList
-          creatures={this.props.currentCreatures}
+          creatures={creatures}
           hemisphere={this.props.hemisphere}
           months={this.props.months}
-          updateSortType={this.props.updateSortType}
-          // sortIcon={this.props.sortIcon}
-          sortInfo={this.props.sortInfo}
+          updateSort={this.props.updateSort}
+          sortInfo={this.props.sort}
         />
       </div>
     )
   }
 }
+
+const mapStateToProps = state => ({
+  currentCreatures: state.creatures.currentCreatures,
+  hemisphere: state.creatures.hemisphere,
+  displayType: state.creatures.displayType,
+  sort: state.creatures.sort
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getCurrentlyAvailableCreatures: (creatures, months, hemisphere, now) => dispatch(getCurrentlyAvailableCreatures(creatures, months, hemisphere, now)),
+    updateSort: (currentSort, type) => dispatch(updateSort(currentSort, type))
+  }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(CreaturesContainer);

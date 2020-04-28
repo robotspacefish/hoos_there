@@ -49,5 +49,4 @@ const updateSortIcon = (currentSort, btnType) => {
   }
 
   return icon;
-  // this.setState({ buttonContent: updatedBtns });
 };

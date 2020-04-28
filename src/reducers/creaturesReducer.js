@@ -13,7 +13,7 @@ export default function (state = defaultState, action) {
         currentCreatures: action.payload
       };
     case "UPDATE_SORT_TYPE":
-      return { ...state, sort: { ...state.sort, ...action.payload } };
+      return { ...state, sort: action.payload };
     default:
       return state;
   }

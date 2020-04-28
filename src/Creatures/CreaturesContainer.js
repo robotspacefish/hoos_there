@@ -56,8 +56,6 @@ class CreaturesContainer extends Component {
         />
         <CreatureList
           creatures={creatures}
-          hemisphere={this.props.hemisphere}
-          months={this.props.months}
           updateSort={this.props.updateSort}
           sortInfo={this.props.sort}
         />

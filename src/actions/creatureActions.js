@@ -1,11 +1,10 @@
 const moment = require('moment');
 
 export const getCurrentlyAvailableCreatures = (creatures, months, hemisphere, now) => {
-
   const currentCreatures = creatures.filter(creature => (
     creature.available_times.every(at => (
       isOutInThisMonth(creature, months, hemisphere, now) &&
-      (at.time === "All day" || isOutAtThisTime(at.start_time, at.end_time, now))
+      (isOutAtThisTime(at, now))
     ))
   ))
 
@@ -17,7 +16,7 @@ const isOutInThisMonth = (creature, months, hemisphere, now) => {
   return creature.hemispheres[hemisphere][month]
 }
 
-const isOutAtThisTime = (startTime, endTime, now) => {
+const isOutAtThisTime = (availableTimes, now) => {
   let s = moment();
   let e = moment();
   s.hour(startTime)

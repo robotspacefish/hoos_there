@@ -13,10 +13,6 @@ const CreatureList = props => {
     ))
   );
 
-  // const renderMonthNames = () => (
-  //   months.map(m => <th key={m}>{m}</th>)
-  // );
-
   return (
     <Table responsive="xl" striped className="CreatureList">
       <CreatureListTableHeader updateSort={updateSort} sortInfo={sortInfo} />

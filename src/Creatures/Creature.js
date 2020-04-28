@@ -1,40 +1,7 @@
 import React from 'react';
 import { capitalize } from '../helpers/helpers';
 
-const Creature = ({ creature, months, hemisphere }) => {
-  const iconType = () => {
-    let icon = 'fas ';
-    switch (creature.type) {
-      case 'fish':
-        icon += 'fa-fish'
-        break;
-      case 'bug':
-        icon += 'fa-bug'
-        break;
-      default:
-        icon = 'fa fa-check'
-    }
-    return icon;
-  };
-
-
-  const renderMonthAvailability = () => {
-    return months.map(month => {
-      if (creature.hemispheres[hemisphere][month.toLowerCase()]) {
-        return (
-          <td key={`${creature.name}_${month}`} style={{ color: "#2C1E0B" }}>
-            <i className={iconType()} />
-          </td>
-        )
-      } else {
-        return <td key={`${creature.name}_${month}`}>
-          <i className="fas fa-slash" style={{ color: "#51871A" }} />
-        </td>
-      }
-
-    });
-  };
-
+const Creature = ({ creature }) => {
   return (
     <tr className="Creature">
       <td>{capitalize(creature.name)}</td>
@@ -49,7 +16,6 @@ const Creature = ({ creature, months, hemisphere }) => {
         }
       </td>
       <td>{creature.price}</td>
-      {/* {renderMonthAvailability()} */}
     </tr>
   );
 }

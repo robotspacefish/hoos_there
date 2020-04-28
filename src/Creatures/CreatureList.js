@@ -6,20 +6,16 @@ import CreatureListTableHeader from './CreatureListTableHeader';
 import './Creature.css';
 
 const CreatureList = props => {
-  const { creatures, months, hemisphere, updateSortType, sortInfo } = props;
+  const { creatures, updateSort, sortInfo } = props;
   const renderCreatures = () => (
     creatures.map((c) => (
-      <Creature key={c.name} creature={c} months={months} hemisphere={hemisphere} />
+      <Creature key={c.name} creature={c} />
     ))
   );
 
-  // const renderMonthNames = () => (
-  //   months.map(m => <th key={m}>{m}</th>)
-  // );
-
   return (
-    <Table responsive="xl" striped hover>
-      <CreatureListTableHeader updateSortType={updateSortType} sortInfo={sortInfo} />
+    <Table responsive="xl" striped className="CreatureList">
+      <CreatureListTableHeader updateSort={updateSort} sortInfo={sortInfo} />
       <tbody>
         {renderCreatures()}
       </tbody>

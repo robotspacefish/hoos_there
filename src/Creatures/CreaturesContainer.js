@@ -1,30 +1,87 @@
 import React, { Component } from 'react'
 import CreatureListHeader from './CreatureListHeader';
 import CreatureList from './CreatureList';
+import { connect } from 'react-redux';
 
-export default class CreaturesContainer extends Component {
-  bugs = creatures => (creatures.filter(c => c.type === "bug"));
+import { getCurrentlyAvailableCreatures, updateSort, updateType } from '../actions/creatureActions';
+import { updateStartingHour } from '../actions/clockActions';
 
-  fish = creatures => (creatures.filter(c => c.type === "fish"));
+import { filterByDisplayTypeAndSort } from '../helpers/sortAndFilterCreatures';
+const json = require('../assets/creatures.json');
 
+class CreaturesContainer extends Component {
+  static defaultProps = {
+    creatures: JSON.parse(JSON.stringify(json))
+  };
 
-  render() {
+  updateSortType = type => (
+    this.props.updateSortType(this.props.sort, type)
+  )
+
+  updateCurrentCreatures() {
+    const { getCurrentlyAvailableCreatures, months, hemisphere, now } = this.props;
+    getCurrentlyAvailableCreatures(this.props.creatures, months, hemisphere, now);
+  }
+
+  componentDidMount() {
+    this.updateCurrentCreatures();
+  }
+
+  componentDidUpdate(prevProps) {
+    if ((prevProps.hemisphere) !== this.props.hemisphere) {
+      this.updateCurrentCreatures();
+    }
+
+    // if the hour changes over, update current creatures
+    if (this.props.now.hour() > this.props.startingHour) {
+      // TODO get new creatures and compare to state- only update if they
+      // differ
+
+      this.updateCurrentCreatures();
+      this.props.updateStartingHour(this.props.now.hour());
+    }
+  }
+
+  renderCreatureList() {
+    const creatures = filterByDisplayTypeAndSort(this.props.sort, this.props.displayType, this.props.currentCreatures);
     return (
-      <div className="CreatureContainer">
+      <>
         <CreatureListHeader
           updateType={this.props.updateType}
           displayType={this.props.displayType}
           hemisphere={this.props.hemisphere}
         />
         <CreatureList
-          creatures={this.props.currentCreatures}
-          hemisphere={this.props.hemisphere}
-          months={this.props.months}
-          updateSortType={this.props.updateSortType}
-          // sortIcon={this.props.sortIcon}
-          sortInfo={this.props.sortInfo}
+          creatures={creatures}
+          updateSort={this.props.updateSort}
+          sortInfo={this.props.sort}
         />
+      </>
+    )
+  }
+
+  render() {
+    return (
+      <div className="CreatureContainer">
+        {this.renderCreatureList()}
       </div>
     )
   }
 }
+
+const mapStateToProps = state => ({
+  currentCreatures: state.creatures.currentCreatures,
+  hemisphere: state.creatures.hemisphere,
+  displayType: state.creatures.displayType,
+  sort: state.creatures.sort
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getCurrentlyAvailableCreatures: (creatures, months, hemisphere, now) => dispatch(getCurrentlyAvailableCreatures(creatures, months, hemisphere, now)),
+    updateSort: (currentSort, type) => dispatch(updateSort(currentSort, type)),
+    updateType: (type, value) => dispatch(updateType(type, value)),
+    updateStartingHour: hour => dispatch(updateStartingHour(hour))
+  }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(CreaturesContainer);

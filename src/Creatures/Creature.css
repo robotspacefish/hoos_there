@@ -16,6 +16,11 @@
   color: rgb(20, 18, 16);
 }
 
+.CreatureListHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* overriding bootstrap */
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: rgba(135, 184, 62, 0.76);

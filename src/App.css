@@ -91,9 +91,13 @@ button.btn.active, .btn-outline-success:hover {
     padding: 0;
   }
 
+  .CreatureListHeader {
+    display: flex;
+    flex-direction: column;
+  }
+
   .CreaturesTypeSelect,
   .CreaturesHemisphereSelect {
-    /* margin: 0 auto 5px; */
     width: 100%;
   }
 

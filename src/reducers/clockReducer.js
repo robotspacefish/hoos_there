@@ -8,6 +8,11 @@ export default function (state = { now, startingHour: now.hour() }, action) {
         ...state,
         now: action.payload
       }
+    case "UPDATE_STARTING_HOUR":
+      return {
+        ...state,
+        startingHour: action.payload
+      };
     default:
       return state;
   }

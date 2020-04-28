@@ -6,8 +6,9 @@ import Spinner from 'react-bootstrap/Spinner';
 import { connect } from 'react-redux';
 
 import { getCurrentlyAvailableCreatures, updateSort, updateType } from '../actions/creatureActions';
-import { filterByDisplayTypeAndSort } from '../helpers/sortAndFilterCreatures';
+import { updateStartingHour } from '../actions/clockActions';
 
+import { filterByDisplayTypeAndSort } from '../helpers/sortAndFilterCreatures';
 const json = require('../assets/creatures.json');
 
 class CreaturesContainer extends Component {
@@ -30,20 +31,18 @@ class CreaturesContainer extends Component {
 
   componentDidUpdate(prevProps) {
     if ((prevProps.hemisphere) !== this.props.hemisphere) {
-      this.updateCurrentCreatures()
+      this.updateCurrentCreatures();
     }
 
     // if the hour changes over, update current creatures
     if (this.props.now.hour() > this.props.startingHour) {
       // TODO get new creatures and compare to state- only update if they
       // differ
+
       console.log('getting new creatures at', this.props.now.toString())
+
       this.updateCurrentCreatures();
-      this.setState({
-        // currentCreatures: this.getCurrentlyAvailableCreatures(),
-        // TODO FIX
-        startingHour: this.props.now.hour()
-      })
+      this.props.updateStartingHour(this.props.now.hour());
     }
   }
 
@@ -87,7 +86,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getCurrentlyAvailableCreatures: (creatures, months, hemisphere, now) => dispatch(getCurrentlyAvailableCreatures(creatures, months, hemisphere, now)),
     updateSort: (currentSort, type) => dispatch(updateSort(currentSort, type)),
-    updateType: (type, value) => dispatch(updateType(type, value))
+    updateType: (type, value) => dispatch(updateType(type, value)),
+    updateStartingHour: hour => dispatch(updateStartingHour(hour))
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CreaturesContainer);

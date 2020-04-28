@@ -39,9 +39,23 @@ class CreaturesContainer extends Component {
     if ((prevProps.hemisphere) !== this.props.hemisphere) {
       this.updateCurrentCreatures()
     }
+
+    // if the hour changes over, update current creatures
+    if (this.props.now.hour() > this.props.startingHour) {
+      // TODO get new creatures and compare to state- only update if they
+      // differ
+      console.log('getting new creatures at', this.props.now.toString())
+      this.updateCurrentCreatures();
+      this.setState({
+        // currentCreatures: this.getCurrentlyAvailableCreatures(),
+        // TODO FIX
+        startingHour: this.props.now.hour()
+      })
+    }
   }
 
   render() {
+    // console.log('creaturesContainer: render', this.props)
     const creatures = filterByDisplayTypeAndSort(this.props.sort, this.props.displayType, this.props.currentCreatures);
     return (
       <div className="CreatureContainer">

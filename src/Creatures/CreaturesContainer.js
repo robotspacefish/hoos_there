@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import CreatureListHeader from './CreatureListHeader';
 import CreatureList from './CreatureList';
+import Spinner from 'react-bootstrap/Spinner';
 
 import { connect } from 'react-redux';
 
@@ -46,23 +47,30 @@ class CreaturesContainer extends Component {
     }
   }
 
+  renderCreatureList() {
+    const creatures = filterByDisplayTypeAndSort(this.props.sort, this.props.displayType, this.props.currentCreatures);
+    return (<>
+      <CreatureListHeader
+        updateType={this.props.updateType}
+        displayType={this.props.displayType}
+        hemisphere={this.props.hemisphere}
+      />
+      <CreatureList
+        creatures={creatures}
+        hemisphere={this.props.hemisphere}
+        months={this.props.months}
+        updateSort={this.props.updateSort}
+        sortInfo={this.props.sort}
+      />
+    </>)
+  }
+
   render() {
     // console.log('creaturesContainer: render', this.props)
-    const creatures = filterByDisplayTypeAndSort(this.props.sort, this.props.displayType, this.props.currentCreatures);
+
     return (
       <div className="CreatureContainer">
-        <CreatureListHeader
-          updateType={this.props.updateType}
-          displayType={this.props.displayType}
-          hemisphere={this.props.hemisphere}
-        />
-        <CreatureList
-          creatures={creatures}
-          hemisphere={this.props.hemisphere}
-          months={this.props.months}
-          updateSort={this.props.updateSort}
-          sortInfo={this.props.sort}
-        />
+        {this.renderCreatureList()}
       </div>
     )
   }

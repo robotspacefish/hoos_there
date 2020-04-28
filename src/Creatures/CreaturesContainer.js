@@ -61,7 +61,6 @@ class CreaturesContainer extends Component {
   }
 
   render() {
-    console.log('CreatureContainer: Render')
     return (
       <div className="CreatureContainer">
         {this.renderCreatureList()}

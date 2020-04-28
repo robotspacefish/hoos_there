@@ -32,7 +32,8 @@ class App extends Component {
   }
 }
 const mapStateToProps = state => ({
-  now: state.clock.now
+  now: state.clock.now,
+  startingHour: state.clock.startingHour
 });
 
 

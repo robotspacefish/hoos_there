@@ -12,7 +12,7 @@ const CreatureListTableHeader = props => {
   ]);
 
   const onClickHandler = e => {
-    props.updateSort(props.sortInfo, e.target.dataset.type);
+    props.updateSort(props.sortInfo, e.currentTarget.dataset.type);
   };
 
   const renderButtons = () => (

@@ -26,11 +26,28 @@ const isOutAtThisTime = (startTime, endTime, now) => {
   return now.isBetween(s, e) && !now.isSame(e, 'hour');
 }
 
-export const updateSortType = (currentSort, type) => {
+export const updateSort = (currentSort, type) => {
   let direction = 'asc';
   if (type === currentSort.type) {
     // if the sort just clicked was the last one clicked, reverse the sort direction
     direction = currentSort.direction === 'asc' ? 'dsc' : 'asc'
   }
-  return { type: "UPDATE_SORT_TYPE", payload: { type, direction } }
+
+  const icon = updateSortIcon(currentSort, type);
+
+  return { type: "UPDATE_SORT_TYPE", payload: { type, direction, icon } }
+};
+
+const updateSortIcon = (currentSort, btnType) => {
+  const ascIcon = "fas fa-sort-amount-down-alt";
+  const dscIcon = "fas fa-sort-amount-down";
+
+  let icon = ascIcon;
+
+  if (btnType === currentSort.type) {
+    icon = currentSort.direction === 'asc' ? dscIcon : ascIcon;
+  }
+
+  return icon;
+  // this.setState({ buttonContent: updatedBtns });
 };

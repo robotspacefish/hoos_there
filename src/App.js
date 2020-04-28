@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from './Header/Header';
 import CreaturesContainer from './Creatures/CreaturesContainer';
 import Footer from './Footer/Footer';
@@ -8,29 +8,22 @@ import { setCurrentTime } from './actions/clockActions';
 
 import './App.css';
 
-class App extends Component {
-  static defaultProps = {
-    months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"]
-  };
+function App(props) {
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"];
 
-  // componentDidMount() {
-  //   this.props.setCurrentTime();
-  // }
+  return (
+    <Container>
+      < Header now={props.now.format("dddd, MMMM Do YYYY, h:mm A")} updateCurrentTime={props.setCurrentTime} startingHour={props.startingHour} />
 
-  render() {
-    return (
-      <Container>
-        < Header now={this.props.now.format("dddd, MMMM Do YYYY, h:mm A")} updateCurrentTime={this.props.setCurrentTime} />
-
-        <CreaturesContainer
-          months={this.props.months}
-          now={this.props.now}
-        />
-        <Footer />
-      </Container>
-    );
-  }
+      <CreaturesContainer
+        months={months}
+        now={props.now}
+      />
+      <Footer />
+    </Container>
+  );
 }
+
 const mapStateToProps = state => ({
   now: state.clock.now,
   startingHour: state.clock.startingHour

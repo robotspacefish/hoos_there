@@ -18,8 +18,8 @@ const CreatureList = props => {
   // );
 
   return (
-    <Table responsive="xl" striped hover>
-      <CreatureListTableHeader updateSortType={updateSortType} sortInfo={sortInfo} />
+    <Table responsive="xl" striped className="CreatureList">
+      <CreatureListTableHeader updateSort={updateSort} sortInfo={sortInfo} />
       <tbody>
         {renderCreatures()}
       </tbody>

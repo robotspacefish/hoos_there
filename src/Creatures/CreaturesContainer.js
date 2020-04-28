@@ -35,6 +35,12 @@ class CreaturesContainer extends Component {
     this.updateCurrentCreatures();
   }
 
+  componentDidUpdate(prevProps) {
+    if ((prevProps.hemisphere) !== this.props.hemisphere) {
+      this.updateCurrentCreatures()
+    }
+  }
+
   render() {
     const creatures = filterByDisplayTypeAndSort(this.props.sort, this.props.displayType, this.props.currentCreatures);
     return (

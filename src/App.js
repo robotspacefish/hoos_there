@@ -13,14 +13,6 @@ class App extends Component {
     months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"]
   };
 
-  // updateType = (type, value) => (this.setState({ [type]: value }));
-  updateType = (type, value) => (this.props.updateType({ [type]: value }));
-
-  // updateCurrentCreatures() {
-  //   const { getCurrentlyAvailableCreatures, creatures, months, hemisphere, now } = this.props;
-  //   getCurrentlyAvailableCreatures(creatures, months, hemisphere, now);
-  // }
-
   componentDidMount() {
     this.props.setCurrentTime();
     // this.updateCurrentCreatures();
@@ -29,9 +21,6 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.hemisphere !== this.props.hemisphere) {
-      this.updateCurrentCreatures();
-    }
 
     // if the hour changes over, update current creatures
     // TODO FIX

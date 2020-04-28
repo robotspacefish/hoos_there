@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import './Clock.css';
 
 class Clock extends Component {
-  componentDidMount() {
-    this.timerID = setInterval(() => this.tick(), 1000);
-  }
+  // TODO update clock and update creatures when hour changes
+  // componentDidMount() {
+  //   this.timerID = setInterval(() => this.tick(), 1000);
+  // }
 
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
+  // componentWillUnmount() {
+  //   clearInterval(this.timerID);
+  // }
 
-  tick() {
-    this.props.updateCurrentTime();
-  }
+  // tick() {
+  //   this.props.updateCurrentTime();
+  // }
 
   render() {
     return (

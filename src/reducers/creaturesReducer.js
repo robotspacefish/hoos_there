@@ -5,7 +5,7 @@ const defaultState = {
   sort: { type: 'default', direction: 'default', icon: '' }
 };
 
-export default function (state = defaultState, action) {
+export default function creature(state = defaultState, action) {
   switch (action.type) {
     case "GET_CURRENT_CREATURES":
       return {

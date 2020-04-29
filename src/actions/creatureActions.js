@@ -28,9 +28,11 @@ const isOutAtThisTime = (availableTimes, now) => {
   e.hour(endTime)
 
   if (endTime < startTime) e.day(e.day() + 1)
+
   // if current time is between start and end times or
   // if current time is between start time and end time is the next day
   return (s.hour() <= now.hour() && e.hour() > now.hour()) ||
+    (now.hour() < e.hour() && e.hour() < s.hour() && e.day() > now.day()) ||
     (s.hour() <= now.hour() && e.day() > now.day());
 }
 

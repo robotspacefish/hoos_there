@@ -1,5 +1,8 @@
 .container {
   max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
@@ -99,6 +102,15 @@ button.btn.active, .btn-outline-success:hover {
   .CreaturesTypeSelect,
   .CreaturesHemisphereSelect {
     width: 100%;
+  }
+
+  header {
+    margin-bottom: 10px;
+  }
+
+  .Search {
+    width: 100%;
+    margin: 0 0 10px 0;
   }
 
 }

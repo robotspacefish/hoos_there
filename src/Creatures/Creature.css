@@ -1,3 +1,7 @@
+.CreatureContainer {
+  flex: 1;
+}
+
 .table {
   background-color: white;
 }

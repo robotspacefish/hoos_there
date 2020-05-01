@@ -1,10 +1,23 @@
 import { sortAlpha, sortNumeric } from './helpers';
 
-export const filterByDisplayTypeAndSort = (sort, displayType, currentCreatures) => {
+export const allSortsAndFilters = (sort, displayType, currentCreatures, query) => {
   const creatures = filterByDisplayType(displayType, currentCreatures);
+  const queriedCreatures = query === '' ? creatures : queryCreatures(creatures, query);
+  /** TODO handle no results */
   return sort.type === 'default' ?
-    creatures : sortCreatures(sort, creatures);
+    queriedCreatures : sortCreatures(sort, queriedCreatures);
 }
+
+const queryCreatures = (creatures, q) => {
+  /** Search by name, location, or price */
+  const query = q.toLowerCase();
+  return creatures.filter(creature => (
+    creature.name.toLowerCase().includes(query) ||
+    creature.location.toLowerCase().includes(query) ||
+    creature.type.toLowerCase().includes(query) ||
+    creature.price.includes(query)
+  ));
+};
 
 const filterByDisplayType = (displayType, currentCreatures) => {
   return displayType === 'all' ?

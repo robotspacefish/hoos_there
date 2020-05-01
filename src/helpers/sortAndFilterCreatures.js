@@ -1,6 +1,6 @@
 import { sortAlpha, sortNumeric } from './helpers';
 
-export const filterByDisplayTypeAndSort = (sort, displayType, currentCreatures) => {
+export const allFilters = (sort, displayType, currentCreatures, query) => {
   const creatures = filterByDisplayType(displayType, currentCreatures);
   return sort.type === 'default' ?
     creatures : sortCreatures(sort, creatures);

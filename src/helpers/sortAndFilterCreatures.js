@@ -1,6 +1,6 @@
 import { sortAlpha, sortNumeric } from './helpers';
 
-export const allFilters = (sort, displayType, currentCreatures, query) => {
+export const allSortsAndFilters = (sort, displayType, currentCreatures, query) => {
   const creatures = filterByDisplayType(displayType, currentCreatures);
   const queriedCreatures = query === '' ? creatures : queryCreatures(creatures, query);
   /** TODO handle no results */

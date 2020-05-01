@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { getCurrentlyAvailableCreatures, updateSort, updateType } from '../actions/creatureActions';
 import { updateStartingHour } from '../actions/clockActions';
 
-import { allFilters } from '../helpers/sortAndFilterCreatures';
+import { allSortsAndFilters } from '../helpers/sortAndFilterCreatures';
 const json = require('../assets/creatures.json');
 
 class CreaturesContainer extends Component {
@@ -53,7 +53,7 @@ class CreaturesContainer extends Component {
   }
 
   renderCreatureList() {
-    const creatures = allFilters(this.props.sort, this.props.displayType, this.props.currentCreatures, this.state.query);
+    const creatures = allSortsAndFilters(this.props.sort, this.props.displayType, this.props.currentCreatures, this.state.query);
     return (
       <>
         <Search updateQuery={this.updateQuery} query={this.state.query} />
@@ -72,7 +72,6 @@ class CreaturesContainer extends Component {
   }
 
   render() {
-    console.log('rendering')
     return (
       <div className="CreatureContainer">
         {this.renderCreatureList()}

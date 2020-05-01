@@ -14,6 +14,7 @@ const queryCreatures = (creatures, q) => {
   return creatures.filter(creature => (
     creature.name.toLowerCase().includes(query) ||
     creature.location.toLowerCase().includes(query) ||
+    creature.type.toLowerCase().includes(query) ||
     creature.price.includes(query)
   ));
 };

@@ -6,23 +6,21 @@ export default class Search extends Component {
   };
 
   handleOnChange = e => {
-    this.setState({ query: e.target.value })
+    this.props.updateQuery(e.target.value)
   };
 
   handleOnSubmit = e => {
     e.preventDefault();
     // todo
     console.log(this.state.query);
-    this.setState({ query: '' })
+    // this.setState({ query: '' })
   };
 
   render() {
     return (
       <div className="Search">
-        <form onSubmit={this.handleOnSubmit}>
-          <input onChange={this.handleOnChange} value={this.state.query} />
-          <button>Search</button>
-        </form>
+        <input name="query" onChange={this.handleOnChange} value={this.props.query} />
+        <label>Search</label>
       </div>
     );
   }

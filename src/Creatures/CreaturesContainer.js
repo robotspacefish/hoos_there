@@ -1,18 +1,28 @@
 import React, { Component } from 'react'
 import CreatureListHeader from './CreatureListHeader';
 import CreatureList from './CreatureList';
+import Search from '../Search/Search';
+
 import { connect } from 'react-redux';
 
 import { getCurrentlyAvailableCreatures, updateSort, updateType } from '../actions/creatureActions';
 import { updateStartingHour } from '../actions/clockActions';
 
-import { filterByDisplayTypeAndSort } from '../helpers/sortAndFilterCreatures';
+import { allFilters } from '../helpers/sortAndFilterCreatures';
 const json = require('../assets/creatures.json');
 
 class CreaturesContainer extends Component {
   static defaultProps = {
     creatures: JSON.parse(JSON.stringify(json))
   };
+
+  state = {
+    query: ''
+  };
+
+  updateQuery = query => {
+    this.setState({ query })
+  }
 
   updateSortType = type => (
     this.props.updateSortType(this.props.sort, type)
@@ -43,9 +53,10 @@ class CreaturesContainer extends Component {
   }
 
   renderCreatureList() {
-    const creatures = filterByDisplayTypeAndSort(this.props.sort, this.props.displayType, this.props.currentCreatures);
+    const creatures = allFilters(this.props.sort, this.props.displayType, this.props.currentCreatures, this.state.query);
     return (
       <>
+        <Search updateQuery={this.updateQuery} query={this.state.query} />
         <CreatureListHeader
           updateType={this.props.updateType}
           displayType={this.props.displayType}
@@ -61,6 +72,7 @@ class CreaturesContainer extends Component {
   }
 
   render() {
+    console.log('rendering')
     return (
       <div className="CreatureContainer">
         {this.renderCreatureList()}

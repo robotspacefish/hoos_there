@@ -16,14 +16,6 @@ class CreaturesContainer extends Component {
     creatures: JSON.parse(JSON.stringify(json))
   };
 
-  // state = {
-  //   query: ''
-  // };
-
-  // updateQuery = query => {
-  //   this.setState({ query })
-  // }
-
   updateSortType = type => (
     this.props.updateSortType(this.props.sort, type)
   )

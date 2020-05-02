@@ -2,7 +2,8 @@ const defaultState = {
   currentCreatures: [],
   hemisphere: "north",
   displayType: "all",
-  sort: { type: 'default', direction: 'default', icon: '' }
+  sort: { type: 'default', direction: 'default', icon: '' },
+  query: ''
 };
 
 export default function creature(state = defaultState, action) {
@@ -18,7 +19,9 @@ export default function creature(state = defaultState, action) {
       const { key, value } = action.payload;
       return {
         ...state, [key]: value
-      }
+      };
+    case "UPDATE_QUERY":
+      return { ...state, query: action.payload }
     default:
       return state;
   }

@@ -63,3 +63,7 @@ const updateSortIcon = (currentSort, btnType) => {
 export const updateType = (type, value) => {
   return { type: "UPDATE_TYPE", payload: { key: type, value } };
 };
+
+export const updateQuery = query => {
+  return { type: "UPDATE_QUERY", payload: query }
+}

@@ -5,7 +5,7 @@ import Search from '../Search/Search';
 
 import { connect } from 'react-redux';
 
-import { getCurrentlyAvailableCreatures, updateSort, updateType } from '../actions/creatureActions';
+import { getCurrentlyAvailableCreatures, updateSort, updateType, updateQuery } from '../actions/creatureActions';
 import { updateStartingHour } from '../actions/clockActions';
 
 import { allSortsAndFilters } from '../helpers/sortAndFilterCreatures';
@@ -16,13 +16,13 @@ class CreaturesContainer extends Component {
     creatures: JSON.parse(JSON.stringify(json))
   };
 
-  state = {
-    query: ''
-  };
+  // state = {
+  //   query: ''
+  // };
 
-  updateQuery = query => {
-    this.setState({ query })
-  }
+  // updateQuery = query => {
+  //   this.setState({ query })
+  // }
 
   updateSortType = type => (
     this.props.updateSortType(this.props.sort, type)
@@ -53,10 +53,10 @@ class CreaturesContainer extends Component {
   }
 
   renderCreatureList() {
-    const creatures = allSortsAndFilters(this.props.sort, this.props.displayType, this.props.currentCreatures, this.state.query);
+    const creatures = allSortsAndFilters(this.props.sort, this.props.displayType, this.props.currentCreatures, this.props.query);
     return (
       <>
-        <Search updateQuery={this.updateQuery} query={this.state.query} />
+        <Search updateQuery={this.props.updateQuery} query={this.props.query} />
         <CreatureListHeader
           updateType={this.props.updateType}
           displayType={this.props.displayType}
@@ -84,7 +84,8 @@ const mapStateToProps = state => ({
   currentCreatures: state.creatures.currentCreatures,
   hemisphere: state.creatures.hemisphere,
   displayType: state.creatures.displayType,
-  sort: state.creatures.sort
+  sort: state.creatures.sort,
+  query: state.creatures.query
 });
 
 const mapDispatchToProps = dispatch => {
@@ -92,6 +93,7 @@ const mapDispatchToProps = dispatch => {
     getCurrentlyAvailableCreatures: (creatures, months, hemisphere, now) => dispatch(getCurrentlyAvailableCreatures(creatures, months, hemisphere, now)),
     updateSort: (currentSort, type) => dispatch(updateSort(currentSort, type)),
     updateType: (type, value) => dispatch(updateType(type, value)),
+    updateQuery: query => dispatch(updateQuery(query)),
     updateStartingHour: hour => dispatch(updateStartingHour(hour))
   }
 };

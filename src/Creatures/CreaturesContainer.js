@@ -5,7 +5,7 @@ import Search from '../Search/Search';
 
 import { connect } from 'react-redux';
 
-import { getCurrentlyAvailableCreatures, updateSort, updateType, updateQuery } from '../actions/creatureActions';
+import { getCurrentlyAvailableCreatures, updateSort, updateType, updateQuery, newThisMonth } from '../actions/creatureActions';
 import { updateStartingHour } from '../actions/clockActions';
 
 import { allSortsAndFilters } from '../helpers/sortAndFilterCreatures';
@@ -23,10 +23,16 @@ class CreaturesContainer extends Component {
   updateCurrentCreatures() {
     const { getCurrentlyAvailableCreatures, months, hemisphere, now } = this.props;
     getCurrentlyAvailableCreatures(this.props.creatures, months, hemisphere, now);
+    this.getNewThisMonth();
   }
 
   componentDidMount() {
     this.updateCurrentCreatures();
+  }
+
+  getNewThisMonth() {
+    const { newThisMonth, creatures, hemisphere, now, months } = this.props;
+    newThisMonth(creatures, hemisphere, now, months);
   }
 
   componentDidUpdate(prevProps) {
@@ -86,7 +92,8 @@ const mapDispatchToProps = dispatch => {
     updateSort: (currentSort, type) => dispatch(updateSort(currentSort, type)),
     updateType: (type, value) => dispatch(updateType(type, value)),
     updateQuery: query => dispatch(updateQuery(query)),
-    updateStartingHour: hour => dispatch(updateStartingHour(hour))
+    updateStartingHour: hour => dispatch(updateStartingHour(hour)),
+    newThisMonth: (creatures, hemisphere, now, months) => dispatch(newThisMonth(creatures, hemisphere, now, months))
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CreaturesContainer);

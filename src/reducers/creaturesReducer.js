@@ -3,7 +3,9 @@ const defaultState = {
   hemisphere: "north",
   displayType: "all",
   sort: { type: 'default', direction: 'default', icon: '' },
-  query: ''
+  query: '',
+  newThisMonth: [],
+  leavingThisMonth: []
 };
 
 export default function creature(state = defaultState, action) {
@@ -21,7 +23,17 @@ export default function creature(state = defaultState, action) {
         ...state, [key]: value
       };
     case "UPDATE_QUERY":
-      return { ...state, query: action.payload }
+      return { ...state, query: action.payload };
+    case "UPDATE_NEW_THIS_MONTH":
+      return {
+        ...state,
+        newThisMonth: action.payload
+      };
+    case "UPDATE_LEAVING_THIS_MONTH":
+      return {
+        ...state,
+        leavingThisMonth: action.payload
+      };
     default:
       return state;
   }

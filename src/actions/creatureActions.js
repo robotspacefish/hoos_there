@@ -67,3 +67,16 @@ export const updateType = (type, value) => {
 export const updateQuery = query => {
   return { type: "UPDATE_QUERY", payload: query }
 }
+
+export const newThisMonth = (creatures, hemisphere, now, months) => {
+  return {
+    type: "UPDATE_NEW_THIS_MONTH",
+    payload: creatures.filter(creature => {
+      const currentMonth = months[now.month()].toLowerCase();
+      const lastMonth = months[now.month() - 1].toLowerCase();
+
+      return creature.hemispheres[hemisphere][currentMonth] &&
+        !creature.hemispheres[hemisphere][lastMonth];
+    })
+  }
+};

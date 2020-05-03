@@ -5,7 +5,8 @@ const defaultState = {
   sort: { type: 'default', direction: 'default', icon: '' },
   query: '',
   newThisMonth: [],
-  leavingThisMonth: []
+  leavingNextMonth: [],
+  leftThisMonth: []
 };
 
 export default function creature(state = defaultState, action) {
@@ -32,7 +33,12 @@ export default function creature(state = defaultState, action) {
     case "UPDATE_LEAVING_THIS_MONTH":
       return {
         ...state,
-        leavingThisMonth: action.payload
+        leavingNextMonth: action.payload
+      };
+    case "UPDATE_LEFT_THIS_MONTH":
+      return {
+        ...state,
+        leftThisMonth: action.payload
       };
     default:
       return state;

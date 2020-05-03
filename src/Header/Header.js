@@ -1,5 +1,6 @@
 import React from 'react';
 import Clock from '../Clock/Clock';
+import CreaturesComingsAndGoings from '../Creatures/CreaturesComingsAndGoings';
 import owl from '../assets/images/owl.png';
 
 const Header = props => (
@@ -9,6 +10,8 @@ const Header = props => (
       <h1 className="title">Hoo's There?</h1>
     </div>
     <Clock now={props.now} updateCurrentTime={props.updateCurrentTime} startingHour={props.startingHour} />
+
+    <CreaturesComingsAndGoings />
   </header>
 );
 

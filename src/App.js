@@ -5,7 +5,6 @@ import Footer from './Footer/Footer';
 import Container from 'react-bootstrap/Container';
 import { connect } from 'react-redux';
 import { setCurrentTime } from './actions/clockActions';
-
 import './App.css';
 
 function App(props) {

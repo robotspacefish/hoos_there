@@ -25,7 +25,7 @@ const filterByDisplayType = (displayType, currentCreatures) => {
     currentCreatures.filter(creature => creature.type === displayType);
 }
 
-const sortCreatures = (sort, creatures) => {
+export const sortCreatures = (sort, creatures) => {
   let sortedCreatures;
   switch (sort.type) {
     case 'name':

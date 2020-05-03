@@ -20,6 +20,34 @@ header {
   padding: 20px 0 0 0;
 }
 
+.Header__content {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.ComingsAndGoingsToggle {
+  color: #433012;
+  font-size: 1.4em;
+}
+
+.ComingsAndGoingsToggle:hover {
+  color: #433012;
+}
+
+.accordion {
+  text-align: center;
+}
+
+.carousel-content {
+  padding: 0 12%;
+  text-align: center;
+}
+
+.carousel-content h3 {
+  color: #355f0b;
+}
+
 header, footer {
   color: #433012;
   background-color: #87B83E;

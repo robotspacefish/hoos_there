@@ -80,3 +80,29 @@ export const newThisMonth = (creatures, hemisphere, now, months) => {
     })
   }
 };
+
+export const leavingNextMonth = (creatures, hemisphere, now, months) => {
+  return {
+    type: "UPDATE_LEAVING_NEXT_MONTH",
+    payload: creatures.filter(creature => {
+      const currentMonth = months[now.month()].toLowerCase();
+      const nextMonth = months[now.month() + 1].toLowerCase();
+
+      return creature.hemispheres[hemisphere][currentMonth] &&
+        !creature.hemispheres[hemisphere][nextMonth];
+    })
+  }
+};
+
+export const leftThisMonth = (creatures, hemisphere, now, months) => {
+  return {
+    type: "UPDATE_LEFT_THIS_MONTH",
+    payload: creatures.filter(creature => {
+      const currentMonth = months[now.month()].toLowerCase();
+      const lastMonth = months[now.month() - 1].toLowerCase();
+
+      return !creature.hemispheres[hemisphere][currentMonth] &&
+        creature.hemispheres[hemisphere][lastMonth];
+    })
+  }
+};

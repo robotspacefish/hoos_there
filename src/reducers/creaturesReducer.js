@@ -30,7 +30,7 @@ export default function creature(state = defaultState, action) {
         ...state,
         newThisMonth: action.payload
       };
-    case "UPDATE_LEAVING_THIS_MONTH":
+    case "UPDATE_LEAVING_NEXT_MONTH":
       return {
         ...state,
         leavingNextMonth: action.payload

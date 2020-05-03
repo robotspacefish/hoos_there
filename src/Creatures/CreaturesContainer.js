@@ -5,7 +5,7 @@ import Search from '../Search/Search';
 
 import { connect } from 'react-redux';
 
-import { getCurrentlyAvailableCreatures, updateSort, updateType, updateQuery, newThisMonth } from '../actions/creatureActions';
+import { getCurrentlyAvailableCreatures, updateSort, updateType, updateQuery, newThisMonth, leavingNextMonth, leftThisMonth } from '../actions/creatureActions';
 import { updateStartingHour } from '../actions/clockActions';
 
 import { allSortsAndFilters } from '../helpers/sortAndFilterCreatures';
@@ -24,6 +24,8 @@ class CreaturesContainer extends Component {
     const { getCurrentlyAvailableCreatures, months, hemisphere, now } = this.props;
     getCurrentlyAvailableCreatures(this.props.creatures, months, hemisphere, now);
     this.getNewThisMonth();
+    this.getLeavingNextMonth();
+    this.getLeftThisMonth();
   }
 
   componentDidMount() {
@@ -33,6 +35,16 @@ class CreaturesContainer extends Component {
   getNewThisMonth() {
     const { newThisMonth, creatures, hemisphere, now, months } = this.props;
     newThisMonth(creatures, hemisphere, now, months);
+  }
+
+  getLeavingNextMonth() {
+    const { leavingNextMonth, creatures, hemisphere, now, months } = this.props;
+    leavingNextMonth(creatures, hemisphere, now, months);
+  }
+
+  getLeftThisMonth() {
+    const { leftThisMonth, creatures, hemisphere, now, months } = this.props;
+    leftThisMonth(creatures, hemisphere, now, months);
   }
 
   componentDidUpdate(prevProps) {
@@ -93,7 +105,9 @@ const mapDispatchToProps = dispatch => {
     updateType: (type, value) => dispatch(updateType(type, value)),
     updateQuery: query => dispatch(updateQuery(query)),
     updateStartingHour: hour => dispatch(updateStartingHour(hour)),
-    newThisMonth: (creatures, hemisphere, now, months) => dispatch(newThisMonth(creatures, hemisphere, now, months))
+    newThisMonth: (creatures, hemisphere, now, months) => dispatch(newThisMonth(creatures, hemisphere, now, months)),
+    leavingNextMonth: (creatures, hemisphere, now, months) => dispatch(leavingNextMonth(creatures, hemisphere, now, months)),
+    leftThisMonth: (creatures, hemisphere, now, months) => dispatch(leftThisMonth(creatures, hemisphere, now, months))
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CreaturesContainer);

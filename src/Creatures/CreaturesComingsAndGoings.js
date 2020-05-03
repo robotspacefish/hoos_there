@@ -43,7 +43,7 @@ const CreaturesComingsAndGoings = props => {
   };
 
   return (
-    <Accordion defaultActiveKey="0">
+    <Accordion defaultActiveKey={null}>
       <Accordion.Toggle eventKey="0" as={Button} variant="link" className="ComingsAndGoingsToggle">
         Comings and Goings
     </Accordion.Toggle>

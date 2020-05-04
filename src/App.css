@@ -9,10 +9,17 @@ header {
   margin-bottom: 40px;
 }
 
-.Header__title-container, footer {
+.Header__title-container>div, footer {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.Header__title-container h3 {
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 20px;
+  padding: 0 20px;
 }
 
 .Header__title-container {
@@ -28,11 +35,12 @@ header {
 
 .ComingsAndGoingsToggle {
   color: #433012;
-  font-size: 1.4em;
+  font-size: 1.2em;
 }
 
 .ComingsAndGoingsToggle:hover {
   color: #433012;
+  text-decoration: none;
 }
 
 .accordion {
@@ -73,7 +81,6 @@ footer a:hover {
 .title {
   font-size: 4em;
   margin: 0;
-  line-height: 0;
   margin-right: 20px;
 }
 
@@ -105,6 +112,10 @@ button.btn.active, .btn-outline-success:hover {
 }
 
 @media screen and (max-width:768px) {
+  body {
+    font-size: 16px;
+  }
+
   .logo {
     width: 15%;
   }

@@ -2,7 +2,7 @@
   "name": "hoos_there",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://robotspacefish.github.io/hoos_there",
+  "homepage": "https://hoosthere.today",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",

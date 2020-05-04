@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/hoos_there/static/css/main.401550f3.chunk.css",
+    "main.js": "/hoos_there/static/js/main.e2776efb.chunk.js",
+    "main.js.map": "/hoos_there/static/js/main.e2776efb.chunk.js.map",
+    "runtime-main.js": "/hoos_there/static/js/runtime-main.91f1658a.js",
+    "runtime-main.js.map": "/hoos_there/static/js/runtime-main.91f1658a.js.map",
+    "static/js/2.9772c9a9.chunk.js": "/hoos_there/static/js/2.9772c9a9.chunk.js",
+    "static/js/2.9772c9a9.chunk.js.map": "/hoos_there/static/js/2.9772c9a9.chunk.js.map",
+    "index.html": "/hoos_there/index.html",
+    "precache-manifest.c2151ef29ab747cf45d35453a6093b04.js": "/hoos_there/precache-manifest.c2151ef29ab747cf45d35453a6093b04.js",
+    "service-worker.js": "/hoos_there/service-worker.js",
+    "static/css/main.401550f3.chunk.css.map": "/hoos_there/static/css/main.401550f3.chunk.css.map",
+    "static/js/2.9772c9a9.chunk.js.LICENSE.txt": "/hoos_there/static/js/2.9772c9a9.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/hoos_there/static/media/FinkHeavy.796b643a.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.91f1658a.js",
+    "static/js/2.9772c9a9.chunk.js",
+    "static/css/main.401550f3.chunk.css",
+    "static/js/main.e2776efb.chunk.js"
+  ]
+}

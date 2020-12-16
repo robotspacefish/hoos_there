@@ -1,5 +1,5 @@
-const moment = require('moment');
-const now = moment();
+const dayjs = require('dayjs');
+const now = dayjs();
 
 export default function clock(state = { now, startingHour: now.hour() }, action) {
   switch (action.type) {

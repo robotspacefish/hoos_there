@@ -1,5 +1,3 @@
-const moment = require('moment');
-
 export const getCurrentlyAvailableCreatures = (creatures, months, hemisphere, now) => {
   const currentCreatures = creatures.filter(creature => (
     creature.available_times.every(at => (

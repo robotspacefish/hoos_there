@@ -69,11 +69,14 @@ export const updateQuery = query => {
 }
 
 export const newThisMonth = (creatures, hemisphere, now, months) => {
+  const m = now.month();
+  const nm = m === 0 ? 11 : m - 1;
+
   return {
     type: "UPDATE_NEW_THIS_MONTH",
     payload: creatures.filter(creature => {
-      const currentMonth = months[now.month()].toLowerCase();
-      const lastMonth = months[now.month() - 1].toLowerCase();
+      const currentMonth = months[m].toLowerCase();
+      const lastMonth = months[nm].toLowerCase();
 
       return creature.hemispheres[hemisphere][currentMonth] &&
         !creature.hemispheres[hemisphere][lastMonth];
@@ -82,11 +85,14 @@ export const newThisMonth = (creatures, hemisphere, now, months) => {
 };
 
 export const leavingNextMonth = (creatures, hemisphere, now, months) => {
+  const m = now.month();
+  const nm = m === 11 ? 0 : m + 1;
+
   return {
     type: "UPDATE_LEAVING_NEXT_MONTH",
     payload: creatures.filter(creature => {
-      const currentMonth = months[now.month()].toLowerCase();
-      const nextMonth = months[now.month() + 1].toLowerCase();
+      const currentMonth = months[m].toLowerCase();
+      const nextMonth = months[nm].toLowerCase();
 
       return creature.hemispheres[hemisphere][currentMonth] &&
         !creature.hemispheres[hemisphere][nextMonth];

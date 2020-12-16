@@ -1,7 +1,7 @@
-const moment = require('moment')
+const dayjs = require('dayjs');
 
 export const setCurrentTime = () => {
-  return { type: "SET_CURRENT_TIME", payload: moment() }
+  return { type: "SET_CURRENT_TIME", payload: dayjs() }
 }
 
 export const updateStartingHour = hour => {

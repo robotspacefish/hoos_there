@@ -54,8 +54,8 @@ export const sortCreatures = (sort, creatures) => {
 const sortByShadowSize = (creatures) => {
   // some creatures don't have a shadow, some have a 'narrow' shadow
   // I separated them from number size shadows, converted those to integers,
-  // sorted, and joined and flatted those 2 arrays in 'asc' order
-  const type = 'shadow_size'
+  // sorted, and joined and flattened those 2 arrays in 'asc' order
+  const type = 'shadow_size';
   const narrowOrNACreatures = creatures.filter(c => c.shadow_size === "Narrow" || c.shadow_size === "NA");
   const nonNarrowCreatures = creatures.filter(c => c.shadow_size !== "Narrow" && c.shadow_size !== "NA").map(c => (
     { ...c, shadow_size: parseInt(c.shadow_size) }

@@ -12,10 +12,11 @@ function App(props) {
 
   return (
     <Container>
-      < Header now={props.now.format("dddd, MMMM D YYYY, h:mm A")} updateCurrentTime={props.setCurrentTime} startingHour={props.startingHour} />
+      < Header now={props.now} updateCurrentTime={props.setCurrentTime} startingHour={props.startingHour} />
       <CreaturesContainer
         months={months}
         now={props.now}
+        startingHour={props.startingHour}
       />
       <Footer />
     </Container>

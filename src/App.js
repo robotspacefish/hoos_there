@@ -16,6 +16,7 @@ function App(props) {
       <CreaturesContainer
         months={months}
         now={props.now}
+        startingHour={props.startingHour}
       />
       <Footer />
     </Container>

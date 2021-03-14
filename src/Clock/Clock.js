@@ -16,9 +16,11 @@ class Clock extends Component {
   // }
 
   render() {
+    const formattedTime = this.props.now.format("dddd, MMMM D YYYY, h:mm A");
+
     return (
       <div className="Clock">
-        {this.props.now}
+        {formattedTime}
       </div>
     );
   }

@@ -52,11 +52,8 @@ class CreaturesContainer extends Component {
       this.updateCurrentCreatures();
     }
 
-    // if the hour changes over, update current creatures
-    if (this.props.now.hour() > this.props.startingHour) {
-      // TODO get new creatures and compare to state- only update if they
-      // differ
-
+    // if the hour changes over, update current creatures & set new startingHour
+    if (this.props.now.hour() !== this.props.startingHour) {
       this.updateCurrentCreatures();
       this.props.updateStartingHour(this.props.now.hour());
     }

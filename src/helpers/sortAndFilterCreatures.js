@@ -1,9 +1,19 @@
 import { sortAlpha, sortNumeric } from './helpers';
 
+/**
+ * Handle combinging of all sorts and filters
+ * @param {Object} sort -type and direction
+ * @param {String} displayType - "all", "fish", or "bugs"
+ * @param {Array} currentCreatures - currently available creatures
+ * @param {String} query - name, type, location, or price of creature
+ * @return {Array} - creatures sorted and filtered by parameters or empty array if query doesn't return anything
+ */
 export const allSortsAndFilters = (sort, displayType, currentCreatures, query) => {
+
   const creatures = filterByDisplayType(displayType, currentCreatures);
   const queriedCreatures = query === '' ? creatures : queryCreatures(creatures, query);
-  /** TODO handle no results */
+
+  if (query.length >= 3) debugger
   return sort.type === 'default' ?
     queriedCreatures : sortCreatures(sort, queriedCreatures);
 }
@@ -11,6 +21,7 @@ export const allSortsAndFilters = (sort, displayType, currentCreatures, query) =
 const queryCreatures = (creatures, q) => {
   /** Search by name, location, or price */
   const query = q.toLowerCase();
+
   return creatures.filter(creature => (
     creature.name.toLowerCase().includes(query) ||
     creature.location.toLowerCase().includes(query) ||
@@ -44,8 +55,8 @@ export const sortCreatures = (sort, creatures) => {
       break;
     default:
   }
-  // // dsc sort
-  if (sort.direction === 'dsc') sortedCreatures = sortedCreatures.reverse()
+  // dsc sort
+  if (sort.direction === 'dsc') sortedCreatures = sortedCreatures.reverse();
 
   return sortedCreatures;
 

@@ -5,7 +5,7 @@ import Footer from './Footer/Footer';
 import Container from 'react-bootstrap/Container';
 import { connect } from 'react-redux';
 import { setCurrentTime } from './actions/clockActions';
-import './App.css';
+import './App.scss';
 
 function App(props) {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

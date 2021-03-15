@@ -32,6 +32,18 @@ class CreaturesContainer extends Component {
     this.updateCurrentCreatures();
   }
 
+  componentDidUpdate(prevProps) {
+    if ((prevProps.hemisphere) !== this.props.hemisphere) {
+      this.updateCurrentCreatures();
+    }
+
+    // if the hour changes over, update current creatures & set new startingHour
+    if (this.props.now.hour() !== this.props.startingHour) {
+      console.log('updating creatures')
+      this.updateCurrentCreatures();
+      this.props.updateStartingHour(this.props.now.hour());
+    }
+  }
   updateSortType = type => (
     this.props.updateSortType(this.props.sort, type)
   )
@@ -57,18 +69,6 @@ class CreaturesContainer extends Component {
   getLeftThisMonth() {
     const { leftThisMonth, creatures, hemisphere, now, months } = this.props;
     leftThisMonth(creatures, hemisphere, now, months);
-  }
-
-  componentDidUpdate(prevProps) {
-    if ((prevProps.hemisphere) !== this.props.hemisphere) {
-      this.updateCurrentCreatures();
-    }
-
-    // if the hour changes over, update current creatures & set new startingHour
-    if (this.props.now.hour() !== this.props.startingHour) {
-      this.updateCurrentCreatures();
-      this.props.updateStartingHour(this.props.now.hour());
-    }
   }
 
   renderCreatureList() {

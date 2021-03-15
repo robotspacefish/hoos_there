@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import { connect } from 'react-redux';
 import { setCurrentTime } from './actions/clockActions';
 import Header from './components/Header/Header';
-import CreaturesContainer from './components/Creatures/CreaturesContainer';
+import CreaturesContainer from './components/Creatures/CreaturesContainer/CreaturesContainer';
 import Footer from './components/Footer/Footer';
 import './App.scss';
 

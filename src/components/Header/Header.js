@@ -1,6 +1,6 @@
 import React from 'react';
 import Clock from '../Clock/Clock';
-import CreaturesComingsAndGoings from '../Creatures/CreaturesComingsAndGoings';
+import ComingsAndGoings from '../Creatures/ComingsAndGoings/ComingsAndGoings';
 import owl from '../../assets/images/owl.png';
 import './Header.scss';
 
@@ -17,7 +17,7 @@ const Header = props => (
 
     <Clock now={props.now} updateCurrentTime={props.updateCurrentTime} startingHour={props.startingHour} />
 
-    <CreaturesComingsAndGoings />
+    <ComingsAndGoings />
   </header>
 );
 

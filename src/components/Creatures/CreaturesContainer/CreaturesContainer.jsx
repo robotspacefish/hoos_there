@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import './CreaturesContainer.scss';
 
-import CreatureListHeader from './CreatureListHeader';
-import CreatureList from './CreatureList';
-import Search from '../Search/Search';
+import ListHeader from '../ListHeader/ListHeader';
+import List from '../List/List';
+import Search from '../../Search/Search';
 
 import {
   getCurrentlyAvailableCreatures,
@@ -13,13 +14,13 @@ import {
   newThisMonth,
   leavingNextMonth,
   leftThisMonth
-} from '../../actions/creatureActions';
+} from '../../../actions/creatureActions';
 
-import { updateStartingHour } from '../../actions/clockActions';
+import { updateStartingHour } from '../../../actions/clockActions';
 
-import { allSortsAndFilters } from '../../helpers/sortAndFilterCreatures';
+import { allSortsAndFilters } from '../../../helpers/sortAndFilterCreatures';
 
-const json = require('../../assets/creatures.json');
+const json = require('../../../assets/creatures.json');
 
 class CreaturesContainer extends Component {
   static defaultProps = {
@@ -71,15 +72,16 @@ class CreaturesContainer extends Component {
 
   renderCreatureList() {
     const creatures = allSortsAndFilters(this.props.sort, this.props.displayType, this.props.currentCreatures, this.props.query);
+
     return (
       <>
         <Search updateQuery={this.props.updateQuery} query={this.props.query} />
-        <CreatureListHeader
+        <ListHeader
           updateType={this.props.updateType}
           displayType={this.props.displayType}
           hemisphere={this.props.hemisphere}
         />
-        <CreatureList
+        <List
           creatures={creatures}
           updateSort={this.props.updateSort}
           sortInfo={this.props.sort}

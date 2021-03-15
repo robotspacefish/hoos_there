@@ -2,7 +2,7 @@ import React from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button'
 
-const CreaturesTypeSelect = props => {
+const TypeSelect = props => {
   const isActive = type => (props.displayType === type);
 
   const handleOnClick = e => (props.updateDisplayType("displayType", e.target.dataset.type));
@@ -25,11 +25,11 @@ const CreaturesTypeSelect = props => {
   );
 
   return (
-    <ButtonGroup className="CreaturesTypeSelect">
+    <ButtonGroup className="TypeSelect">
       {renderTypeButtons()}
     </ButtonGroup>
   );
 }
 
-export default CreaturesTypeSelect;
+export default TypeSelect;
 

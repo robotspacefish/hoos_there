@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-const CreatureListTableHeader = props => {
+const ListTableHeader = props => {
   const buttonContent = () => ([
     { content: "Name", type: "name" },
     { content: "Type", type: "type" },
@@ -26,7 +26,7 @@ const CreatureListTableHeader = props => {
   );
 
   return (
-    <thead className="CreatureListTableHeader">
+    <thead className="ListTableHeader">
       <tr>
         {renderButtons()}
       </tr>
@@ -34,4 +34,4 @@ const CreatureListTableHeader = props => {
   );
 }
 
-export default CreatureListTableHeader;
+export default ListTableHeader;

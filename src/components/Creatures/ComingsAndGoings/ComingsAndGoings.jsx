@@ -3,10 +3,10 @@ import Carousel from 'react-bootstrap/Carousel';
 import Accordion from 'react-bootstrap/Accordion'
 import Button from 'react-bootstrap/Button'
 import { connect } from 'react-redux';
-import { capitalize } from '../../helpers/helpers';
-import { sortCreatures } from '../../helpers/sortAndFilterCreatures';
+import { capitalize } from '../../../helpers/helpers';
+import { sortCreatures } from '../../../helpers/sortAndFilterCreatures';
 
-class CreaturesComingsAndGoings extends React.Component {
+class ComingsAndGoings extends React.Component {
   state = {
     toggleTextPrefix: 'Show',
     icon: 'down'
@@ -83,4 +83,4 @@ const mapStateToProps = state => ({
   leavingNextMonth: state.creatures.leavingNextMonth
 });
 
-export default connect(mapStateToProps)(CreaturesComingsAndGoings);
+export default connect(mapStateToProps)(ComingsAndGoings);

@@ -33,20 +33,10 @@ button.btn.active, .btn-outline-success:hover {
   background-color: #87B83E !important;
 }
 
-@media screen and (max-width:480px) {
-  .Clock {
-    font-size: 1em;
-  }
-}
 
 @media screen and (max-width:768px) {
   body {
     font-size: 16px;
-  }
-
-  .Clock {
-    margin-top: 15px;
-    font-size: 1.2em;
   }
 
   .container {
@@ -61,13 +51,6 @@ button.btn.active, .btn-outline-success:hover {
   .CreaturesTypeSelect,
   .CreaturesHemisphereSelect {
     width: 100%;
-  }
-
-
-
-  .Search {
-    width: 100%;
-    margin: 0 0 10px 0;
   }
 
 }

@@ -36,3 +36,10 @@
     width: 95%;
   }
 }
+
+@media screen and (max-width:768px) {
+  .Search {
+    width: 100%;
+    margin: 0 0 10px 0;
+  }
+}

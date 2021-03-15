@@ -1,0 +1,56 @@
+.container {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.ComingsAndGoingsToggle {
+  color: #433012;
+  font-size: 1.2em;
+}
+
+.ComingsAndGoingsToggle:hover {
+  color: #433012;
+  text-decoration: none;
+}
+
+.accordion {
+  text-align: center;
+}
+
+.carousel-content {
+  padding: 0 12%;
+  text-align: center;
+}
+
+.carousel-content h3 {
+  color: #355f0b;
+}
+
+button.btn.active, .btn-outline-success:hover {
+  /* overriding bootstrap */
+  background-color: #87B83E !important;
+}
+
+
+@media screen and (max-width:768px) {
+  body {
+    font-size: 16px;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .CreatureListHeader {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .CreaturesTypeSelect,
+  .CreaturesHemisphereSelect {
+    width: 100%;
+  }
+
+}

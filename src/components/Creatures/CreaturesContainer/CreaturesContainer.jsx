@@ -1,20 +1,36 @@
 import React, { Component } from 'react'
-import CreatureListHeader from './CreatureListHeader';
-import CreatureList from './CreatureList';
-import Search from '../Search/Search';
-
 import { connect } from 'react-redux';
 
-import { getCurrentlyAvailableCreatures, updateSort, updateType, updateQuery, newThisMonth, leavingNextMonth, leftThisMonth } from '../actions/creatureActions';
-import { updateStartingHour } from '../actions/clockActions';
+import ListHeader from '../ListHeader/ListHeader';
+import List from '../List/List';
+import Search from '../../Search/Search';
 
-import { allSortsAndFilters } from '../helpers/sortAndFilterCreatures';
-const json = require('../assets/creatures.json');
+import {
+  getCurrentlyAvailableCreatures,
+  updateSort,
+  updateType,
+  updateQuery,
+  newThisMonth,
+  leavingNextMonth,
+  leftThisMonth
+} from '../../../actions/creatureActions';
+
+import { updateStartingHour } from '../../../actions/clockActions';
+
+import { allSortsAndFilters } from '../../../helpers/sortAndFilterCreatures';
+
+import './CreaturesContainer.scss';
+
+const json = require('../../../assets/creatures.json');
 
 class CreaturesContainer extends Component {
   static defaultProps = {
     creatures: JSON.parse(JSON.stringify(json))
   };
+
+  componentDidMount() {
+    this.updateCurrentCreatures();
+  }
 
   updateSortType = type => (
     this.props.updateSortType(this.props.sort, type)
@@ -26,10 +42,6 @@ class CreaturesContainer extends Component {
     this.getNewThisMonth();
     this.getLeavingNextMonth();
     this.getLeftThisMonth();
-  }
-
-  componentDidMount() {
-    this.updateCurrentCreatures();
   }
 
   getNewThisMonth() {
@@ -61,15 +73,16 @@ class CreaturesContainer extends Component {
 
   renderCreatureList() {
     const creatures = allSortsAndFilters(this.props.sort, this.props.displayType, this.props.currentCreatures, this.props.query);
+
     return (
       <>
         <Search updateQuery={this.props.updateQuery} query={this.props.query} />
-        <CreatureListHeader
+        <ListHeader
           updateType={this.props.updateType}
           displayType={this.props.displayType}
           hemisphere={this.props.hemisphere}
         />
-        <CreatureList
+        <List
           creatures={creatures}
           updateSort={this.props.updateSort}
           sortInfo={this.props.sort}
@@ -80,7 +93,7 @@ class CreaturesContainer extends Component {
 
   render() {
     return (
-      <div className="CreatureContainer">
+      <div className="CreaturesContainer">
         {this.renderCreatureList()}
       </div>
     )

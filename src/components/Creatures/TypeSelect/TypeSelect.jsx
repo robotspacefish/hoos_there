@@ -1,8 +1,9 @@
 import React from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Button from 'react-bootstrap/Button'
+import OptionButton from '../../OptionButton/OptionButton';
+import './TypeSelect.scss';
 
-const CreaturesTypeSelect = props => {
+const TypeSelect = props => {
   const isActive = type => (props.displayType === type);
 
   const handleOnClick = e => (props.updateDisplayType("displayType", e.target.dataset.type));
@@ -10,26 +11,25 @@ const CreaturesTypeSelect = props => {
   const renderTypeButtons = () => (
     ['all', 'bug', 'fish'].map(type => {
 
-      return <Button
+      return <OptionButton
         variant="outline-success"
         size="sm"
         key={type}
         active={isActive(type)}
         data-type={type}
         onClick={handleOnClick}
-        className="option-btn"
       >
         {type.toUpperCase()}
-      </Button>
+      </OptionButton>
     })
   );
 
   return (
-    <ButtonGroup className="CreaturesTypeSelect">
+    <ButtonGroup className="TypeSelect">
       {renderTypeButtons()}
     </ButtonGroup>
   );
 }
 
-export default CreaturesTypeSelect;
+export default TypeSelect;
 

@@ -1,0 +1,20 @@
+.Clock {
+  text-align: center;
+  font-size: 1.5em;
+  padding-bottom: 10px;
+  background-color: rgb(135, 184, 62);
+  color: #355f0b;
+}
+
+@media screen and (max-width:480px) {
+  .Clock {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .Clock {
+    margin-top: 15px;
+    font-size: 1.2em;
+  }
+}

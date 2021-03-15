@@ -1,11 +1,11 @@
 import React from 'react';
-import Creature from './Creature';
+import Creature from '../Creature/Creature';
 import Table from 'react-bootstrap/Table';
-import CreatureListTableHeader from './CreatureListTableHeader';
+import ListTableHeader from '../ListTableHeader/ListTableHeader';
 
-import './Creature.css';
+import './List.scss';
 
-const CreatureList = props => {
+const List = props => {
   const { creatures, updateSort, sortInfo } = props;
   const renderCreatures = () => (
     creatures.map((c) => (
@@ -14,8 +14,8 @@ const CreatureList = props => {
   );
 
   return (
-    <Table responsive="xl" striped className="CreatureList">
-      <CreatureListTableHeader updateSort={updateSort} sortInfo={sortInfo} />
+    <Table responsive="xl" striped className="List">
+      <ListTableHeader updateSort={updateSort} sortInfo={sortInfo} />
       <tbody>
         {renderCreatures()}
       </tbody>
@@ -24,4 +24,4 @@ const CreatureList = props => {
   );
 };
 
-export default CreatureList;
+export default List;

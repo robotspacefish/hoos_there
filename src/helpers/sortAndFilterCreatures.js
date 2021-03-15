@@ -9,7 +9,6 @@ import { sortAlpha, sortNumeric } from './helpers';
  * @return {Array} - creatures sorted and filtered by parameters or empty array if query doesn't return anything
  */
 export const allSortsAndFilters = (sort, displayType, currentCreatures, query) => {
-
   const creatures = filterByDisplayType(displayType, currentCreatures);
   const queriedCreatures = query === '' ? creatures : queryCreatures(creatures, query);
 

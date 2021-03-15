@@ -1,5 +1,5 @@
 import React from 'react';
-import { capitalize } from '../helpers/helpers';
+import { capitalize } from '../../helpers/helpers';
 
 const Creature = ({ creature }) => {
   return (

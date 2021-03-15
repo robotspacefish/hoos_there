@@ -1,15 +1,25 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+
 import CreatureListHeader from './CreatureListHeader';
 import CreatureList from './CreatureList';
 import Search from '../Search/Search';
 
-import { connect } from 'react-redux';
+import {
+  getCurrentlyAvailableCreatures,
+  updateSort,
+  updateType,
+  updateQuery,
+  newThisMonth,
+  leavingNextMonth,
+  leftThisMonth
+} from '../../actions/creatureActions';
 
-import { getCurrentlyAvailableCreatures, updateSort, updateType, updateQuery, newThisMonth, leavingNextMonth, leftThisMonth } from '../actions/creatureActions';
-import { updateStartingHour } from '../actions/clockActions';
+import { updateStartingHour } from '../../actions/clockActions';
 
-import { allSortsAndFilters } from '../helpers/sortAndFilterCreatures';
-const json = require('../assets/creatures.json');
+import { allSortsAndFilters } from '../../helpers/sortAndFilterCreatures';
+
+const json = require('../../assets/creatures.json');
 
 class CreaturesContainer extends Component {
   static defaultProps = {

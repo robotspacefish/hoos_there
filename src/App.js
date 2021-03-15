@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from './Header/Header';
-import CreaturesContainer from './Creatures/CreaturesContainer';
-import Footer from './Footer/Footer';
 import Container from 'react-bootstrap/Container';
 import { connect } from 'react-redux';
 import { setCurrentTime } from './actions/clockActions';
+import Header from './components/Header/Header';
+import CreaturesContainer from './components/Creatures/CreaturesContainer';
+import Footer from './components/Footer/Footer';
 import './App.scss';
 
 function App(props) {

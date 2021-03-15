@@ -1,7 +1,7 @@
 import React from 'react';
 import Clock from '../Clock/Clock';
 import CreaturesComingsAndGoings from '../Creatures/CreaturesComingsAndGoings';
-import owl from '../assets/images/owl.png';
+import owl from '../../assets/images/owl.png';
 import './Header.scss';
 
 const Header = props => (

@@ -3,10 +3,9 @@ import Carousel from 'react-bootstrap/Carousel';
 import Accordion from 'react-bootstrap/Accordion'
 import Button from 'react-bootstrap/Button'
 import { connect } from 'react-redux';
-import { capitalize } from '../helpers/helpers';
-import { sortCreatures } from '../helpers/sortAndFilterCreatures';
+import { capitalize } from '../../helpers/helpers';
+import { sortCreatures } from '../../helpers/sortAndFilterCreatures';
 
-// const CreaturesComingsAndGoings = props => {
 class CreaturesComingsAndGoings extends React.Component {
   state = {
     toggleTextPrefix: 'Show',

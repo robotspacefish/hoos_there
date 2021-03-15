@@ -4,7 +4,6 @@ import Table from 'react-bootstrap/Table';
 import ListTableHeader from '../ListTableHeader/ListTableHeader';
 
 import './List.scss';
-import '../Creature.css';
 
 const List = props => {
   const { creatures, updateSort, sortInfo } = props;
@@ -15,7 +14,7 @@ const List = props => {
   );
 
   return (
-    <Table responsive="xl" striped className="CreatureList">
+    <Table responsive="xl" striped className="List">
       <ListTableHeader updateSort={updateSort} sortInfo={sortInfo} />
       <tbody>
         {renderCreatures()}

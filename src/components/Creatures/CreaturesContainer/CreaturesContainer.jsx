@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import './CreaturesContainer.scss';
 
 import ListHeader from '../ListHeader/ListHeader';
 import List from '../List/List';
@@ -19,6 +18,8 @@ import {
 import { updateStartingHour } from '../../../actions/clockActions';
 
 import { allSortsAndFilters } from '../../../helpers/sortAndFilterCreatures';
+
+import './CreaturesContainer.scss';
 
 const json = require('../../../assets/creatures.json');
 
@@ -92,7 +93,7 @@ class CreaturesContainer extends Component {
 
   render() {
     return (
-      <div className="CreatureContainer">
+      <div className="CreaturesContainer">
         {this.renderCreatureList()}
       </div>
     )

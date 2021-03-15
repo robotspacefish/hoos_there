@@ -22,5 +22,8 @@ const capitalize = str => (
   str.split(" ").map(word => word[0].toUpperCase() + word.slice(1)).join(" ")
 );
 
+const format = time => {
+  return time.format("dddd, MMMM D YYYY, h:mm A");
+};
 
-export { sortAlpha, sortNumeric, capitalize };
+export { sortAlpha, sortNumeric, capitalize, format };

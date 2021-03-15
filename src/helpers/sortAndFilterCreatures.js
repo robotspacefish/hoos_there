@@ -13,7 +13,6 @@ export const allSortsAndFilters = (sort, displayType, currentCreatures, query) =
   const creatures = filterByDisplayType(displayType, currentCreatures);
   const queriedCreatures = query === '' ? creatures : queryCreatures(creatures, query);
 
-  if (query.length >= 3) debugger
   return sort.type === 'default' ?
     queriedCreatures : sortCreatures(sort, queriedCreatures);
 }

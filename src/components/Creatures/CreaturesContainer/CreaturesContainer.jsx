@@ -32,6 +32,30 @@ class CreaturesContainer extends Component {
     this.updateCurrentCreatures();
   }
 
+  componentDidUpdate(prevProps) {
+    if ((prevProps.hemisphere) !== this.props.hemisphere) {
+      this.updateCurrentCreatures();
+    }
+
+    // if the hour changes over, update current creatures & set new startingHour
+    if (this.props.now.hour() !== this.props.startingHour) {
+      console.log('updating creatures')
+      this.updateCurrentCreatures();
+      this.props.updateStartingHour(this.props.now.hour());
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    let current = { ...this.props };
+    let next = { ...nextProps };
+
+    /* now is always changings and isn't needed for this to re-render */
+    delete current.now;
+    delete next.now;
+
+    return JSON.stringify(current) !== JSON.stringify(next);
+  }
+
   updateSortType = type => (
     this.props.updateSortType(this.props.sort, type)
   )
@@ -59,18 +83,6 @@ class CreaturesContainer extends Component {
     leftThisMonth(creatures, hemisphere, now, months);
   }
 
-  componentDidUpdate(prevProps) {
-    if ((prevProps.hemisphere) !== this.props.hemisphere) {
-      this.updateCurrentCreatures();
-    }
-
-    // if the hour changes over, update current creatures & set new startingHour
-    if (this.props.now.hour() !== this.props.startingHour) {
-      this.updateCurrentCreatures();
-      this.props.updateStartingHour(this.props.now.hour());
-    }
-  }
-
   renderCreatureList() {
     const creatures = allSortsAndFilters(this.props.sort, this.props.displayType, this.props.currentCreatures, this.props.query);
 
@@ -92,6 +104,7 @@ class CreaturesContainer extends Component {
   }
 
   render() {
+    console.log("CreaturesContainer: RENDER")
     return (
       <div className="CreaturesContainer">
         {this.renderCreatureList()}

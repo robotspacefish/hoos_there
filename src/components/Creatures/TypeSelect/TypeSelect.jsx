@@ -1,6 +1,6 @@
 import React from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Button from 'react-bootstrap/Button';
+import OptionButton from '../../OptionButton/OptionButton';
 import './TypeSelect.scss';
 
 const TypeSelect = props => {
@@ -11,17 +11,16 @@ const TypeSelect = props => {
   const renderTypeButtons = () => (
     ['all', 'bug', 'fish'].map(type => {
 
-      return <Button
+      return <OptionButton
         variant="outline-success"
         size="sm"
         key={type}
         active={isActive(type)}
         data-type={type}
         onClick={handleOnClick}
-        className="option-btn"
       >
         {type.toUpperCase()}
-      </Button>
+      </OptionButton>
     })
   );
 

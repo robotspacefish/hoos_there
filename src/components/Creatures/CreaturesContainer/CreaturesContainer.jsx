@@ -28,6 +28,10 @@ class CreaturesContainer extends Component {
     creatures: JSON.parse(JSON.stringify(json))
   };
 
+  componentDidMount() {
+    this.updateCurrentCreatures();
+  }
+
   updateSortType = type => (
     this.props.updateSortType(this.props.sort, type)
   )
@@ -38,10 +42,6 @@ class CreaturesContainer extends Component {
     this.getNewThisMonth();
     this.getLeavingNextMonth();
     this.getLeftThisMonth();
-  }
-
-  componentDidMount() {
-    this.updateCurrentCreatures();
   }
 
   getNewThisMonth() {

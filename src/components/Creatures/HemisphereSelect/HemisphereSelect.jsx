@@ -4,11 +4,11 @@ import OptionButton from '../../OptionButton/OptionButton';
 import { capitalize } from '../../../helpers/helpers';
 import './HemisphereSelect';
 
-const HemisphereSelect = props => {
-  const isActive = type => (props.hemisphere === type);
+const HemisphereSelect = ({ hemisphere, updateHemisphereType }) => {
+  const isActive = type => (hemisphere === type);
 
   const handleOnClick = e => (
-    props.updateHemisphereType("hemisphere", e.target.dataset.type)
+    updateHemisphereType("hemisphere", e.target.dataset.type)
   );
 
   const renderHemisphereButtons = () => (

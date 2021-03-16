@@ -52,8 +52,7 @@ class CreaturesContainer extends Component {
     /* now is always changings and isn't needed for this to re-render */
     delete current.now;
     delete next.now;
-
-    return JSON.stringify(current) !== JSON.stringify(next);
+    return JSON.stringify(current) !== JSON.stringify(next) || this.props.startingHour !== nextProps.now.hour();
   }
 
   updateSortType = type => (

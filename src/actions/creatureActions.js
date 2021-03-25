@@ -1,6 +1,8 @@
 export const getCurrentlyAvailableCreatures = (creatures, months, hemisphere, now) => {
+
   const currentCreatures = creatures.filter(creature => (
-    creature.available_times.every(at => (
+    // some creatures are out multiple times a day and should be displayed as long as one of those times is current
+    creature.available_times.some(at => (
       isOutInThisMonth(creature, months, hemisphere, now) &&
       (isOutAtThisTime(at, now))
     ))

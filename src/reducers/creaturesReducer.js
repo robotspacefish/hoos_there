@@ -19,6 +19,7 @@ export default function creature(state = defaultState, action) {
     case "UPDATE_SORT_TYPE":
       return { ...state, sort: action.payload };
     case "UPDATE_TYPE":
+      // responsible for updating type of creature to display and hemisphere
       const { key, value } = action.payload;
       return {
         ...state, [key]: value

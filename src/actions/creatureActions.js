@@ -81,6 +81,7 @@ export const newThisMonth = (creatures, hemisphere, now, months) => {
 };
 
 export const leavingNextMonth = (creatures, hemisphere, now, months) => {
+  // dayjs months are 0 - 11, so if it's dec (11) then next month is jan(0)
   const m = now.month();
   const nm = m === 11 ? 0 : m + 1;
 
@@ -97,11 +98,15 @@ export const leavingNextMonth = (creatures, hemisphere, now, months) => {
 };
 
 export const leftThisMonth = (creatures, hemisphere, now, months) => {
+  // dayjs months are 0 - 11, so if it's jan (0) then last month is dec(11)
+  const m = now.month();
+  const nm = m === 0 ? 11 : m - 1;
+
   return {
     type: "UPDATE_LEFT_THIS_MONTH",
     payload: creatures.filter(creature => {
-      const currentMonth = months[now.month()].toLowerCase();
-      const lastMonth = months[now.month() - 1].toLowerCase();
+      const currentMonth = months[m].toLowerCase();
+      const lastMonth = months[nm].toLowerCase();
 
       return !creature.hemispheres[hemisphere][currentMonth] &&
         creature.hemispheres[hemisphere][lastMonth];

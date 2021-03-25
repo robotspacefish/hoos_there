@@ -45,16 +45,6 @@ class CreaturesContainer extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
-    let current = { ...this.props };
-    let next = { ...nextProps };
-
-    /* now is always changings and isn't needed for this to re-render */
-    delete current.now;
-    delete next.now;
-    return JSON.stringify(current) !== JSON.stringify(next) || this.props.startingHour !== nextProps.now.hour();
-  }
-
   updateSortType = type => (
     this.props.updateSortType(this.props.sort, type)
   )
@@ -103,6 +93,7 @@ class CreaturesContainer extends Component {
   }
 
   render() {
+    console.log('RENDER CREATURES CONTAINER')
     return (
       <div className="CreaturesContainer">
         {this.renderCreatureList()}

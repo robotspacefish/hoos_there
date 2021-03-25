@@ -52,6 +52,8 @@ class CreaturesContainer extends Component {
   updateCurrentCreatures() {
     const { getCurrentlyAvailableCreatures, months, hemisphere, now } = this.props;
     getCurrentlyAvailableCreatures(this.props.creatures, months, hemisphere, now);
+
+    // TODO move these to only update when the month changes
     this.getNewThisMonth();
     this.getLeavingNextMonth();
     this.getLeftThisMonth();

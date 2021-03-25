@@ -45,6 +45,16 @@ class CreaturesContainer extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps) {
+    let current = { ...this.props };
+    let next = { ...nextProps };
+
+    /* now changes every minute and I don't need this to re-render when it does */
+    delete current.now;
+    delete next.now;
+    return JSON.stringify(current) !== JSON.stringify(next) || this.props.startingHour !== nextProps.now.hour();
+  }
+
   updateSortType = type => (
     this.props.updateSortType(this.props.sort, type)
   )

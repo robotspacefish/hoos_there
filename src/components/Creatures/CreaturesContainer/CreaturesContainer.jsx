@@ -49,7 +49,7 @@ class CreaturesContainer extends Component {
     let current = { ...this.props };
     let next = { ...nextProps };
 
-    /* now is always changings and isn't needed for this to re-render */
+    /* now changes every minute and I don't need this to re-render when it does */
     delete current.now;
     delete next.now;
     return JSON.stringify(current) !== JSON.stringify(next) || this.props.startingHour !== nextProps.now.hour();
@@ -62,6 +62,8 @@ class CreaturesContainer extends Component {
   updateCurrentCreatures() {
     const { getCurrentlyAvailableCreatures, months, hemisphere, now } = this.props;
     getCurrentlyAvailableCreatures(this.props.creatures, months, hemisphere, now);
+
+    // TODO move these to only update when the month changes
     this.getNewThisMonth();
     this.getLeavingNextMonth();
     this.getLeftThisMonth();
@@ -103,6 +105,7 @@ class CreaturesContainer extends Component {
   }
 
   render() {
+    console.log('RENDER CREATURES CONTAINER')
     return (
       <div className="CreaturesContainer">
         {this.renderCreatureList()}

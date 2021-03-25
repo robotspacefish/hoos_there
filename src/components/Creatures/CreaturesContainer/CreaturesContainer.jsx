@@ -39,7 +39,7 @@ class CreaturesContainer extends Component {
 
     // if the hour changes over, update current creatures & set new startingHour
     if (this.props.now.hour() !== this.props.startingHour) {
-      console.log('updating creatures')
+
       this.updateCurrentCreatures();
       this.props.updateStartingHour(this.props.now.hour());
     }
@@ -103,7 +103,6 @@ class CreaturesContainer extends Component {
   }
 
   render() {
-    console.log("CreaturesContainer: RENDER")
     return (
       <div className="CreaturesContainer">
         {this.renderCreatureList()}
